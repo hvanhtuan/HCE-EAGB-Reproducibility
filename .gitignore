@@ -1,0 +1,21 @@
+# Raw and derived large data
+data/raw/
+data/nfip_cells.parquet
+artifacts/predictions/*.parquet
+results/models/
+results/*_preds.npz
+results/*_enc.pkl
+
+# Runtime logs and environments
+artifacts/logs/*.log
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store
+Thumbs.db
+
+# Keep directory placeholders
+!artifacts/predictions/README.md
+!artifacts/logs/README.md

@@ -1,0 +1,28 @@
+{
+  "tables": {
+    "h1_model_metrics": {
+      "builder": "scripts/build_tables.py",
+      "input": "results/reference/kb2_test.json",
+      "output": "results/tables/h1_model_metrics.csv"
+    },
+    "h1_bootstrap_comparisons": {
+      "builder": "scripts/build_tables.py",
+      "input": "results/reference/kb2_test.json",
+      "output": "results/tables/h1_bootstrap_comparisons.csv"
+    },
+    "matching_audit": {
+      "builder": "scripts/build_tables.py",
+      "input": "results/audit/matching_audit_summary.json",
+      "output": "results/tables/matching_audit_summary.csv"
+    }
+  },
+  "figures": {
+    "figure_1_1": {"builder": "figures/fig1_1_roadmap.py", "output": "figures/output/fig1_1_roadmap.png"},
+    "figure_1_2": {"builder": "figures/fig1_2_chain.py", "output": "figures/output/fig1_2_chain.png"},
+    "figure_2_1": {"builder": "figures/fig2_1_architecture.py", "output": "figures/output/fig2_1_architecture.png"},
+    "figure_2_2": {"builder": "figures/fig2_2_temporal.py", "output": "figures/output/fig2_2_temporal.png"},
+    "figure_4_1": {"builder": "figures/fig4_1_calib_lorenz.py", "input": "figures/data/fig4_1_deciles.csv; figures/data/fig4_1_lorenz.json", "output": "figures/output/fig4_1_calib_lorenz.png"},
+    "figure_4_2": {"builder": "figures/fig4_2_importance.py", "input": "figures/data/fig4_2_importance.json", "output": "figures/output/fig4_2_importance.png"},
+    "figure_4_3": {"builder": "figures/fig4_3_pareto.py", "input": "figures/data/fig4_3_pareto.csv", "output": "figures/output/fig4_3_pareto.png"}
+  }
+}

@@ -1,0 +1,16 @@
+# Môi trường đã dùng để chạy toàn bộ kịch bản KB1-KB9, TK1-TK7 và các phân tích bổ sung
+# của Chuyên đề Tiến sĩ 2 - Giai đoạn 3 (khóa phiên bản để tái lập đúng số liệu).
+# Cài đặt: pip install -r requirements.txt --break-system-packages  (hoặc trong virtualenv, bỏ cờ này)
+# Python: 3.11.15
+
+numpy==2.4.4
+pandas==3.0.2
+scipy==1.17.1
+scikit-learn==1.8.0
+lightgbm==4.7.0
+catboost==1.2.10
+pymoo==0.6.2
+matplotlib==3.10.9
+openpyxl==3.1.5
+python-docx==1.1.2
+pyarrow==25.0.1

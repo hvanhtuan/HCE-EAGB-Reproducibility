@@ -1,0 +1,41 @@
+{
+  "source": "original_repro/results/kb2_test.json",
+  "bootstrap_distances_recomputed": false,
+  "reason": "NFIP saved per-cell predictions were not found in the supplied files",
+  "components": [
+    {
+      "metric": "OE",
+      "raw_EAGB": 1.2584825495827299,
+      "raw_GLM": 0.2741880398288879,
+      "raw_difference": 0.984294509753842,
+      "distance_EAGB": 0.25848254958272987,
+      "distance_GLM": 0.7258119601711122,
+      "distance_difference": -0.4673294105883823,
+      "margin": 0.05,
+      "point_rule_met": true
+    },
+    {
+      "metric": "slope",
+      "raw_EAGB": 0.0809182830409549,
+      "raw_GLM": -0.3685367029986657,
+      "raw_difference": 0.4494549860396206,
+      "distance_EAGB": 0.9190817169590451,
+      "distance_GLM": 1.3685367029986657,
+      "distance_difference": -0.44945498603962064,
+      "margin": 0.1,
+      "point_rule_met": true
+    },
+    {
+      "metric": "max_dec_dev",
+      "raw_EAGB": 32.51304153926396,
+      "raw_GLM": 22.11665983962237,
+      "raw_difference": 10.39638169964159,
+      "distance_EAGB": 32.51304153926396,
+      "distance_GLM": 22.11665983962237,
+      "distance_difference": 10.39638169964159,
+      "margin": 0.1,
+      "point_rule_met": false
+    }
+  ],
+  "overall_point_rule_met": false
+}

@@ -1,0 +1,48 @@
+{
+  "check": "local consistency check, not independent reproduction of the study",
+  "node_order": [
+    "r",
+    "a",
+    "b",
+    "c"
+  ],
+  "solution": [
+    "24/11",
+    "16/11",
+    "8/11",
+    "34/11"
+  ],
+  "J_star": "36/11",
+  "J_sequential": "7/2",
+  "objective_gap": "5/22",
+  "gradient_at_a_sequential": -1,
+  "max_difference_dense": 4.440892098500626e-16,
+  "H": [
+    [
+      3.0,
+      -1.0,
+      0.0,
+      -1.0
+    ],
+    [
+      -1.0,
+      2.0,
+      -1.0,
+      0.0
+    ],
+    [
+      0.0,
+      -1.0,
+      2.0,
+      0.0
+    ],
+    [
+      -1.0,
+      0.0,
+      0.0,
+      2.0
+    ]
+  ],
+  "hessian": "2H",
+  "assumption_A_boundary_cases": "passed"
+}

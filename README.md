@@ -1,0 +1,116 @@
+# HCE/EAGB reproducibility package
+
+This repository contains the reference code, locked analysis configuration, machine-readable results, reviewer audit, and figure-building scripts for the HCE/EAGB study on NFIP and freMTPL2 data.
+
+## Reproducibility status
+
+The repository supports two levels of verification:
+
+1. **Artifact verification** checks the repository structure, JSON files, checksums, locked model-selection record, and any generated cell-level prediction file.
+2. **Full replay** rebuilds the NFIP risk-cell table from the public raw files, fits the locked models, exports cell-level predictions, and rebuilds derived tables and figures.
+
+Raw NFIP files are not included because of their size and their original distribution terms. Their expected names, sizes, and SHA-256 values are recorded in `data/raw_manifest.json`. A fresh download from OpenFEMA may not be byte-identical to the September 2026 snapshot used in the study.
+
+The committed JSON files in `results/reference/` are the original reference results. Results from a new replay are written directly under `results/`; they do not overwrite `results/reference/`.
+
+## Repository layout
+
+```text
+code/                    Original analysis code
+code/supplementary/      Supplementary numerical checks and modern baseline
+configs/                 Locked seeds and paper workflow configuration
+data/                    Data manifest and data dictionary; raw data excluded
+results/reference/       Original machine-readable paper results
+results/supplementary/   Supplementary analyses
+results/audit/           Reviewer-driven matching/equation audit
+artifacts/predictions/   Cell-level predictions produced by a full replay
+artifacts/model_selection/ Machine-readable selection log
+figures/                 Figure scripts, source data, and generated figures
+scripts/                 Cross-platform orchestration and release checks
+```
+
+## Quick verification
+
+Python 3.11.15 is the reference interpreter.
+
+```bash
+python -m pip install -r requirements-lock.txt
+python scripts/verify_release.py
+```
+
+The repository also includes a container:
+
+```bash
+docker build -t hce-repro:v1.0.0 .
+docker run --rm hce-repro:v1.0.0
+```
+
+## Full replay
+
+Place the NFIP files described by `data/raw_manifest.json` under `data/raw/`. Then run:
+
+```bash
+python scripts/run_all.py --mode full --rebuild-cells
+```
+
+The full workflow preserves the committed preregistration/configuration file `results/prereg_H1.json` and therefore does not reselect hyperparameters on the test period. It runs the locked primary test, robustness analysis, spatial out-of-sample analysis, freMTPL2 comparison, paired comparison, exports cell-level predictions, builds tabular summaries, rebuilds figures, and verifies the release.
+
+Useful partial commands:
+
+```bash
+python scripts/run_all.py --mode verify
+python scripts/build_model_selection_log.py
+python scripts/export_cell_predictions.py
+python scripts/build_tables.py
+python figures/build_all.py
+```
+
+On Windows, execute these commands from PowerShell. The orchestrator changes into the required working directories automatically.
+
+## Cell-level predictions
+
+After `kb2_h1.py test` creates `results/kb2_test_preds.npz`, the exporter writes:
+
+- `artifacts/predictions/nfip_test_predictions.parquet`
+- `artifacts/predictions/nfip_test_predictions.schema.json`
+
+The Parquet file contains one row per 2021–2023 risk cell, observed exposure/loss/count fields, geography at the public aggregate level, the split label, and one prediction column per model. It contains no person or policy identifier.
+
+If the large prediction artifact is not committed to GitHub, the two files can be deterministically regenerated from the risk-cell table and saved NPZ output using `scripts/export_cell_predictions.py`.
+
+## Model selection and seeds
+
+`configs/seeds.json` is the central seed registry for the release. The historical core seed remains `20260918`, as used in `code/nfip_lib.py` and the preregistered analysis.
+
+`artifacts/model_selection/model_selection.csv` records every tested HCE shrinkage candidate, Tweedie variance-power candidate, selected value, validation score, and locked iteration count recoverable from the pilot and preregistration files. Regenerate it with:
+
+```bash
+python scripts/build_model_selection_log.py
+```
+
+## Tables and figures
+
+`scripts/build_tables.py` converts the reference or replay JSON into CSV tables under `results/tables/`. The complete figure set is rebuilt by `figures/build_all.py` from the machine-readable data in `figures/data/`. `configs/paper_outputs.json` maps each delivered output to its inputs and builder.
+
+## Integrity and versioning
+
+`SHA256SUMS.txt` records repository artifact hashes. Regenerate it only when intentionally preparing a new release:
+
+```bash
+python scripts/generate_checksums.py
+python scripts/verify_release.py
+```
+
+For publication, create a Git tag such as `v1.0.0`, create a GitHub Release from that tag, and archive the same release on Zenodo/OSF. Add the resulting repository URL and DOI to `CITATION.cff`; do not claim a DOI before one is issued.
+
+## Limitations
+
+- The raw NFIP snapshot is not redistributed.
+- A full replay is computationally intensive and was not run while assembling this GitHub package.
+- The committed repository does not include the historical per-cell prediction arrays because they were absent from the archived material. The deterministic export mechanism is included and produces them during a full replay.
+- The local preregistration timestamp and hash are preserved, but they are not evidence of an independently timestamped registry deposit.
+- Small numerical variation may occur across CPU/BLAS implementations even with fixed seeds. The environment, thread counts, and release hashes should therefore be reported with any replay.
+
+## License
+
+The source code is released under the MIT license in `LICENSE`. OpenFEMA/OpenML data remain subject to their original terms. Committed numerical outputs are provided for scholarly verification and should be cited with the associated study.

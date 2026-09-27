@@ -1,0 +1,64 @@
+{
+ "model": "Credibility Transformer (tái cài đặt độc lập, Richman-Scognamiglio-Wüthrich 2025)",
+ "results": {
+  "poisson_dev_x100": 31.11527289629122,
+  "gini": 0.32364399901487184,
+  "OE": 1.0407669378324753,
+  "slope": 1.03899815905426,
+  "max_dec_dev": 0.14993751175949366,
+  "n_members": 5,
+  "seeds": [
+   1,
+   2,
+   3,
+   4,
+   5
+  ],
+  "train_sec_per_member": [
+   348.243971824646,
+   380.916134595871,
+   378.98642921447754,
+   398.3084864616394,
+   415.413547039032
+  ],
+  "epochs_run_per_member": [
+   36,
+   40,
+   40,
+   40,
+   40
+  ],
+  "n_params": 1815
+ },
+ "boot_vs_kb1": {
+  "Credibility Transformer || GLM Poisson": {
+   "diff_x100": -0.7594152087221676,
+   "CI95": [
+    -0.8897394541692702,
+    -0.643514725587961
+   ]
+  },
+  "Credibility Transformer || EAGB (HCE đồng thời)": {
+   "diff_x100": 0.4054633654434138,
+   "CI95": [
+    0.277717783879138,
+    0.5316605249379704
+   ]
+  },
+  "Credibility Transformer || GBDT phân loại nội tại": {
+   "diff_x100": 0.44537670849976563,
+   "CI95": [
+    0.32527013286387646,
+    0.5728206081465524
+   ]
+  },
+  "Credibility Transformer || CatBoost (OTS)": {
+   "diff_x100": 0.345623392611411,
+   "CI95": [
+    0.22793714288602546,
+    0.4592875187178565
+   ]
+  }
+ },
+ "ghi_chu": "Thăm dò, chạy SAU KB1, không tiền đăng ký. Cùng tập kiểm định freMTPL2 với kb1_fremtpl2.py (SEED=20260918) nên so sánh số với các mô hình KB1 là hợp lệ."
+}

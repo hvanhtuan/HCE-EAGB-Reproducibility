@@ -1,0 +1,2 @@
+﻿check,node_order,solution,J_star,J_sequential,objective_gap,gradient_at_a_sequential,max_difference_dense,H,hessian,assumption_A_boundary_cases
+"local consistency check, not independent reproduction of the study","[""r"",""a"",""b"",""c""]","[""24/11"",""16/11"",""8/11"",""34/11""]",36/11,7/2,5/22,-1,4.440892098500626e-16,"[[3.0,-1.0,0.0,-1.0],[-1.0,2.0,-1.0,0.0],[0.0,-1.0,2.0,0.0],[-1.0,0.0,0.0,2.0]]",2H,passed

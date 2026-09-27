@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this code or the accompanying results, please cite the associated study."
+title: "HCE/EAGB reproducibility package"
+type: software
+version: 1.0.0
+date-released: 2026-09-27
+authors:
+  - family-names: "Hồ"
+    given-names: "Vũ Anh Tuấn"
+license: MIT
+keywords:
+  - hierarchical credibility encoding
+  - insurance pricing
+  - NFIP
+  - reproducibility
+# Add repository-code and doi after the public repository and archive exist.
