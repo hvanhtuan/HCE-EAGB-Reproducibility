@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — post-full-replay audit synchronization
+
+- Recomputed the H1b distance estimands and paired county-cluster bootstrap directly from the released cell-level predictions.
+- Preserved the superseded pre-full-replay H1b audit under `results/audit/history/`.
+- Added H1b provenance and point-estimand checks to release verification.
+- Clarified that checksum counts are taken from the final verifier run.
+
 ## v1.0.0 — 2026-09-27
 
 - Consolidated the archived HCE/EAGB analysis code into one release structure.

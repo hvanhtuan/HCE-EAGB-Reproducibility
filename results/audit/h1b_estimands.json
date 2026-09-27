@@ -1,7 +1,20 @@
 {
-  "source": "original_repro/results/kb2_test.json",
-  "bootstrap_distances_recomputed": false,
-  "reason": "NFIP saved per-cell predictions were not found in the supplied files",
+  "analysis_status": "post_review_exploratory",
+  "locked_H1b_rule": "simultaneous point rule; unchanged by this bootstrap",
+  "source": "artifacts/predictions/nfip_test_predictions.parquet",
+  "source_schema": "artifacts/predictions/nfip_test_predictions.schema.json",
+  "source_sha256": "f698303d0b53e3b8ddb9dee754af8a062a356b79c797f82074532b715ebdcfb8",
+  "source_rows": 399128,
+  "prediction_columns": {
+    "EAGB": "prediction_00",
+    "GLM": "prediction_08"
+  },
+  "bootstrap_distances_recomputed": true,
+  "bootstrap_unit": "county",
+  "county_clusters": 101,
+  "bootstrap_replicates": 600,
+  "seed": 20260925,
+  "paired_resampling": true,
   "components": [
     {
       "metric": "OE",
@@ -12,7 +25,17 @@
       "distance_GLM": 0.7258119601711122,
       "distance_difference": -0.4673294105883823,
       "margin": 0.05,
-      "point_rule_met": true
+      "point_rule_met": true,
+      "bootstrap_raw_difference": {
+        "lo95": -0.2212570051489278,
+        "hi95": 3.835681553624648,
+        "finite_replicates": 600
+      },
+      "bootstrap_distance_difference": {
+        "lo95": -0.7345893762327925,
+        "hi95": 3.034114705323235,
+        "finite_replicates": 600
+      }
     },
     {
       "metric": "slope",
@@ -23,7 +46,17 @@
       "distance_GLM": 1.3685367029986657,
       "distance_difference": -0.44945498603962064,
       "margin": 0.1,
-      "point_rule_met": true
+      "point_rule_met": true,
+      "bootstrap_raw_difference": {
+        "lo95": -0.47156766019951224,
+        "hi95": 0.9923279666085743,
+        "finite_replicates": 600
+      },
+      "bootstrap_distance_difference": {
+        "lo95": -0.9923279666085746,
+        "hi95": 0.471567660199512,
+        "finite_replicates": 600
+      }
     },
     {
       "metric": "max_dec_dev",
@@ -34,8 +67,19 @@
       "distance_GLM": 22.11665983962237,
       "distance_difference": 10.39638169964159,
       "margin": 0.1,
-      "point_rule_met": false
+      "point_rule_met": false,
+      "bootstrap_raw_difference": {
+        "lo95": -10.874492999501543,
+        "hi95": 93.84393848818175,
+        "finite_replicates": 600
+      },
+      "bootstrap_distance_difference": {
+        "lo95": -10.874492999501543,
+        "hi95": 93.84393848818175,
+        "finite_replicates": 600
+      }
     }
   ],
-  "overall_point_rule_met": false
+  "overall_point_rule_met": false,
+  "supersedes": "results/audit/history/h1b_estimands_pre_full_replay.json"
 }

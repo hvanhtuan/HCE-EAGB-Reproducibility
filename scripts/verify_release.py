@@ -39,6 +39,7 @@ def main() -> None:
         "results/audit/matching_audit_summary.json",
         "artifacts/model_selection/model_selection.csv",
         "scripts/run_all.py", "scripts/export_cell_predictions.py",
+        "scripts/recompute_h1b.py",
         "figures/build_all.py", "SHA256SUMS.txt",
     ]
     for relative in required:
@@ -89,6 +90,29 @@ def main() -> None:
             check(False, f"prediction artifact readable: {exc}")
     else:
         print("[INFO] Cell-level Parquet is not committed; run the full replay to generate it.")
+
+    h1b_path = ROOT / "results" / "audit" / "h1b_estimands.json"
+    if h1b_path.exists():
+        h1b = json.loads(h1b_path.read_text(encoding="utf-8"))
+        check(h1b.get("bootstrap_distances_recomputed") is True, "H1b distance bootstrap was recomputed")
+        check(h1b.get("source_rows") == 399128, "H1b audit uses all test-cell predictions")
+        check(h1b.get("bootstrap_unit") == "county", "H1b bootstrap unit is county")
+        check(h1b.get("paired_resampling") is True, "H1b uses paired resampling")
+        check(h1b.get("overall_point_rule_met") is False, "locked H1b point rule remains not met")
+        if prediction_path.exists():
+            check(h1b.get("source_sha256") == sha256(prediction_path), "H1b source SHA-256 matches predictions")
+        expected = {
+            "OE": -0.4673294105883823,
+            "slope": -0.44945498603962064,
+            "max_dec_dev": 10.39638169964159,
+        }
+        observed = {item["metric"]: item["distance_difference"] for item in h1b.get("components", [])}
+        check(
+            all(name in observed and abs(observed[name] - value) < 1e-12 for name, value in expected.items()),
+            "H1b point estimands match the locked results",
+        )
+    else:
+        check(False, "H1b audit result present")
 
     checksum_path = ROOT / "SHA256SUMS.txt"
     checked = 0

@@ -75,6 +75,7 @@ def main() -> None:
                 run([sys.executable, "kb1_fremtpl2.py"], CODE, log)
                 run([sys.executable, "kb1_paired.py"], CODE, log)
             run([sys.executable, "scripts/export_cell_predictions.py"], ROOT, log)
+            run([sys.executable, "scripts/recompute_h1b.py"], ROOT, log)
             run([sys.executable, "scripts/build_model_selection_log.py"], ROOT, log)
             run([sys.executable, "scripts/build_tables.py"], ROOT, log)
             run([sys.executable, "build_all.py"], ROOT / "figures", log)

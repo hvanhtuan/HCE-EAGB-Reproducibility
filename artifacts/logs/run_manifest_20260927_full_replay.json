@@ -15,5 +15,16 @@
     "artifacts/logs/run_full_packaging_20260927T152830Z.log"
   ],
   "verification": "passed",
-  "comparison": "results/replay_verification.json"
+  "comparison": "results/replay_verification.json",
+  "post_review_h1b_audit": {
+    "script": "scripts/recompute_h1b.py",
+    "source": "artifacts/predictions/nfip_test_predictions.parquet",
+    "output": "results/audit/h1b_estimands.json",
+    "bootstrap_unit": "county",
+    "county_clusters": 101,
+    "bootstrap_replicates": 600,
+    "seed": 20260925,
+    "status": "complete",
+    "locked_point_rule_changed": false
+  }
 }

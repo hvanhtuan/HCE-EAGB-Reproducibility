@@ -55,7 +55,7 @@ Place all files described by `data/raw_manifest.json`, including OpenML freMTPL2
 python scripts/run_all.py --mode full --rebuild-cells
 ```
 
-The full workflow preserves the committed preregistration/configuration file `results/prereg_H1.json` and therefore does not reselect hyperparameters on the test period. It runs the locked primary test, robustness analysis, spatial out-of-sample analysis, freMTPL2 comparison, paired comparison, exports cell-level predictions, builds tabular summaries, rebuilds figures, and verifies the release.
+The full workflow preserves the committed preregistration/configuration file `results/prereg_H1.json` and therefore does not reselect hyperparameters on the test period. It runs the locked primary test, robustness analysis, spatial out-of-sample analysis, freMTPL2 comparison, paired comparison, exports cell-level predictions, recomputes the post-review H1b distance bootstrap, builds tabular summaries, rebuilds figures, and verifies the release.
 
 Useful partial commands:
 
@@ -63,6 +63,7 @@ Useful partial commands:
 python scripts/run_all.py --mode verify
 python scripts/build_model_selection_log.py
 python scripts/export_cell_predictions.py
+python scripts/recompute_h1b.py
 python scripts/build_tables.py
 python figures/build_all.py
 python code/numerical_stability.py
@@ -80,6 +81,10 @@ After `kb2_h1.py test` creates `results/kb2_test_preds.npz`, the exporter writes
 The Parquet file contains one row per 2021–2023 risk cell, observed exposure/loss/count fields, geography at the public aggregate level, the split label, and one prediction column per model. It contains no person or policy identifier.
 
 The replay-generated prediction artifact and schema are committed to this release. They can also be deterministically regenerated from the risk-cell table and saved NPZ output using `scripts/export_cell_predictions.py`.
+
+## Post-review H1b audit
+
+`scripts/recompute_h1b.py` reads the committed cell-level predictions and recomputes the three H1b distance estimands with paired county-cluster bootstrap resampling. This uncertainty analysis is explicitly post-review and exploratory. It does not replace the locked simultaneous point rule, and H1b remains not met because the maximum-decile calibration component exceeds its margin. The pre-full-replay audit is retained under `results/audit/history/` for provenance.
 
 ## Model selection and seeds
 
@@ -101,7 +106,7 @@ python scripts/build_model_selection_log.py
 
 ## Integrity and versioning
 
-`SHA256SUMS.txt` records repository artifact hashes. Regenerate it only when intentionally preparing a new release:
+`SHA256SUMS.txt` records repository artifact hashes. The number of entries can change when release artefacts are added; the authoritative count is the final `verified N release checksums` line from `scripts/verify_release.py`. Regenerate it only when intentionally preparing a new release:
 
 ```bash
 python scripts/generate_checksums.py

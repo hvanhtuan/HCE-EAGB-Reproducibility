@@ -10,5 +10,6 @@
   "spatial_oos": 20260918,
   "fremtpl2": 20260918,
   "numerical_stability": 20260927,
-  "notes": "Historical core seed preserved from code/nfip_lib.py. The post-review numerical-stability stress test uses its separately documented seed."
+  "h1b_post_review_bootstrap": 20260925,
+  "notes": "Historical core seed preserved from code/nfip_lib.py. Post-review numerical-stability and H1b bootstrap analyses use their separately documented seeds."
 }

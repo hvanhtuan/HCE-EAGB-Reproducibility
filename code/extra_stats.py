@@ -10,7 +10,7 @@ from metrics import tweedie_dev, calib, gini_conc
 
 XI = 1.5
 B = 2000
-SEED = 20260918  # dùng đúng hạt giống của phân tích đã tiền đăng ký, để dòng "cụm quận" tái lập chính xác
+SEED = 20260925  # hạt giống lịch sử của phân tích bổ sung/hậu kiểm đã lưu
 KEY = {"EAGB": "EAGB (HCE ng thi)0", "GLM": "GLM Tweedie (i chng chnh)8",
        "FLAT": "GBDT + m ha phng co ngt (H1c)2", "SEQ": "GBDT + HCE tun t (GT2)1"}
 

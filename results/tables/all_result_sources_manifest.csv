@@ -25,7 +25,7 @@ supplementary,results/supplementary/spatial_oos.json,results/tables/sources/supp
 supplementary,results/supplementary/tk_results.json,results/tables/sources/supplementary/tk_results.csv,16
 supplementary,results/supplementary/unmatched_claims.json,results/tables/sources/supplementary/unmatched_claims.csv,128
 audit,results/audit/equation_consistency.json,results/tables/sources/audit/equation_consistency.csv,11
-audit,results/audit/h1b_estimands.json,results/tables/sources/audit/h1b_estimands.csv,5
+audit,results/audit/h1b_estimands.json,results/tables/sources/audit/h1b_estimands.csv,17
 audit,results/audit/matching_audit_summary.json,results/tables/sources/audit/matching_audit_summary.csv,57
 audit,results/audit/nfip_qa_recomputed.json,results/tables/sources/audit/nfip_qa_recomputed.csv,25
 audit,results/audit/raw_manifest.json,results/tables/sources/audit/raw_manifest.csv,1
