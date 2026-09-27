@@ -33,6 +33,8 @@ def main() -> None:
         "data/raw_manifest.json", "results/prereg_H1.json",
         "results/reference/kb2_test.json",
         "results/supplementary/kb2_pilot.json",
+        "results/supplementary/numerical_stability.json",
+        "code/numerical_stability.py",
         "results/audit/matching_audit_summary.json",
         "artifacts/model_selection/model_selection.csv",
         "scripts/run_all.py", "scripts/export_cell_predictions.py",
@@ -56,6 +58,7 @@ def main() -> None:
 
     seed = json.loads((ROOT / "configs" / "seeds.json").read_text(encoding="utf-8"))
     check(seed.get("global") == 20260918, "central seed matches historical core seed")
+    check(seed.get("numerical_stability") == 20260927, "numerical-stability seed is recorded")
 
     prereg = json.loads((ROOT / "results" / "prereg_H1.json").read_text(encoding="utf-8"))
     check(prereg.get("data_split", {}).get("test") == [2021, 2023], "locked test window is 2021-2023")

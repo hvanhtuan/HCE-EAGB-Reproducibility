@@ -11,3 +11,4 @@
 - Added machine-readable table builders and the complete existing figure build system.
 - Added Docker configuration and a GitHub Actions workflow template (`github-actions-verify.yml.example`).
 - Added release-wide SHA-256 verification.
+- Added a seeded, post-review numerical-stability stress test and its machine-readable 60-configuration output.

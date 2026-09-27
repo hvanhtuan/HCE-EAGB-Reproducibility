@@ -63,6 +63,7 @@ python scripts/build_model_selection_log.py
 python scripts/export_cell_predictions.py
 python scripts/build_tables.py
 python figures/build_all.py
+python code/numerical_stability.py
 ```
 
 On Windows, execute these commands from PowerShell. The orchestrator changes into the required working directories automatically.
@@ -91,6 +92,10 @@ python scripts/build_model_selection_log.py
 ## Tables and figures
 
 `scripts/build_tables.py` converts the reference or replay JSON into CSV tables under `results/tables/`. The complete figure set is rebuilt by `figures/build_all.py` from the machine-readable data in `figures/data/`. `configs/paper_outputs.json` maps each delivered output to its inputs and builder.
+
+## Post-review numerical stability check
+
+`code/numerical_stability.py` runs the documented post-review stress test for the tree solver over depth, exposure imbalance, ridge penalty, and zero-exposure leaves. It writes all 60 configurations and their condition numbers, forward errors, relative residuals, and normalized backward errors to `results/supplementary/numerical_stability.json`. This check is explicitly exploratory and separate from the preregistered results.
 
 ## Integrity and versioning
 

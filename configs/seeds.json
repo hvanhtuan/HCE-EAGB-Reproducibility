@@ -9,5 +9,6 @@
   "model_selection": 20260918,
   "spatial_oos": 20260918,
   "fremtpl2": 20260918,
-  "notes": "Historical core seed preserved from code/nfip_lib.py. Individual supplementary scripts may declare additional documented seeds."
+  "numerical_stability": 20260927,
+  "notes": "Historical core seed preserved from code/nfip_lib.py. The post-review numerical-stability stress test uses its separately documented seed."
 }
