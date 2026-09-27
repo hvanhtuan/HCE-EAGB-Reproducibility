@@ -5,6 +5,8 @@ artifacts/predictions/*.parquet
 results/models/
 results/*_preds.npz
 results/*_enc.pkl
+results/ckpt_oos_*.npz
+code/catboost_info/
 
 # Runtime logs and environments
 artifacts/logs/*.log

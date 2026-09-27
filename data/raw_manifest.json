@@ -168,5 +168,12 @@
     "file": "part/NfipClaims_NJ_2026.parquet",
     "bytes": 20478,
     "sha256": "46d438df59fb320e3a7d15bec31e0efd58fbda8d3704a4ef0d6809999cf14919"
+  },
+  {
+    "file": "fremtpl2freq.pq",
+    "bytes": 7469711,
+    "sha256": "aead80a9ac68baf2c78fc1beaa287441d88d06cc11be60a1f226784d164c6dd7",
+    "source": "OpenML dataset 41214, version 1",
+    "url": "https://data.openml.org/datasets/0004/41214/dataset_41214.pq"
   }
 ]

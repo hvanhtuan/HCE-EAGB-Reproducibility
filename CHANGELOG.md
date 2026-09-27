@@ -12,3 +12,5 @@
 - Added Docker configuration and a GitHub Actions workflow template (`github-actions-verify.yml.example`).
 - Added release-wide SHA-256 verification.
 - Added a seeded, post-review numerical-stability stress test and its machine-readable 60-configuration output.
+- Completed the clean Docker full replay, added replay outputs and 399,128 cell-level predictions, and documented comparison with the archived reference results.
+- Added freMTPL2freq to the raw-data manifest and aligned the prediction exporter with the eight-state study filter.

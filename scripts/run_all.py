@@ -78,6 +78,7 @@ def main() -> None:
             run([sys.executable, "scripts/build_model_selection_log.py"], ROOT, log)
             run([sys.executable, "scripts/build_tables.py"], ROOT, log)
             run([sys.executable, "build_all.py"], ROOT / "figures", log)
+            run([sys.executable, "scripts/generate_checksums.py"], ROOT, log)
             run([sys.executable, "scripts/verify_release.py"], ROOT, log)
 
     manifest = {

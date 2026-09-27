@@ -1,0 +1,56 @@
+{
+  "release": "1.0.0",
+  "completed_at_utc": "2026-09-27T08:32:24Z",
+  "environment": {
+    "python": "3.11.15",
+    "platform": "linux/amd64",
+    "threads": 2,
+    "docker_image_digest": "sha256:432560d24e553a8982d30616c0dd2a65d5d8f1a5c874d20c1b0ee0b26b3ca920",
+    "seed": 20260918
+  },
+  "inputs": {
+    "manifest_entries_verified": 35,
+    "nfip_study_cells": 2453910,
+    "nfip_test_cells": 399128,
+    "fremtpl2_rows": 678013,
+    "fremtpl2_openml_id": 41214,
+    "fremtpl2_version": 1
+  },
+  "reference_comparison": {
+    "nfip_locked_point_metrics": {
+      "status": "exact",
+      "maximum_absolute_difference": 0.0,
+      "metrics": ["tweedie_dev", "gini", "OE", "slope", "max_dec_dev"]
+    },
+    "nfip_robustness": {
+      "status": "exact"
+    },
+    "spatial_oos": {
+      "status": "exact_except_runtime",
+      "only_different_field": "sec_total"
+    },
+    "fremtpl2": {
+      "status": "near_exact",
+      "all_non_glm_point_metrics_exact": true,
+      "glm_poisson_deviance_x100_difference": -0.0021086706778028486,
+      "glm_poisson_gini_difference": 0.000272214143826055,
+      "paired_comparisons_exact": true,
+      "conclusions_changed": false
+    }
+  },
+  "predictions": {
+    "file": "artifacts/predictions/nfip_test_predictions.parquet",
+    "rows": 399128,
+    "models": 12,
+    "sha256": "f698303d0b53e3b8ddb9dee754af8a062a356b79c797f82074532b715ebdcfb8",
+    "unique_cell_ids": true,
+    "contains_person_or_policy_identifier": false
+  },
+  "release_verification": {
+    "status": "passed",
+    "checksums_verified": 190,
+    "figures_rebuilt": 7,
+    "model_selection_rows": 43
+  },
+  "execution_note": "The workflow was completed in three logged stages after the initial run exposed a missing freMTPL2 manifest entry and an exporter filter mismatch. Both packaging defects were corrected before final verification; the locked modeling code and preregistered configuration were not changed."
+}

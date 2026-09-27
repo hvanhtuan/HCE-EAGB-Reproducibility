@@ -1,0 +1,95 @@
+{
+  "release": "1.0.0",
+  "rows": 399128,
+  "columns": {
+    "cell_id": "str",
+    "state": "str",
+    "county": "str",
+    "tract": "str",
+    "year": "int64",
+    "E": "float64",
+    "S": "float64",
+    "N": "float64",
+    "split": "str",
+    "prediction_00": "float64",
+    "prediction_01": "float64",
+    "prediction_02": "float64",
+    "prediction_03": "float64",
+    "prediction_04": "float64",
+    "prediction_05": "float64",
+    "prediction_06": "float64",
+    "prediction_07": "float64",
+    "prediction_08": "float64",
+    "prediction_09": "float64",
+    "prediction_10": "float64",
+    "prediction_11": "float64"
+  },
+  "risk_cell_key": [
+    "state",
+    "county",
+    "tract",
+    "year",
+    "zone",
+    "occ",
+    "prim",
+    "elev",
+    "pfirm",
+    "floors",
+    "ded",
+    "cov"
+  ],
+  "prediction_columns": {
+    "prediction_00": {
+      "model": "EAGB (HCE đồng thời)",
+      "npz_key": "EAGB (HCE ng thi)0"
+    },
+    "prediction_01": {
+      "model": "GBDT + HCE tuần tự (GT2)",
+      "npz_key": "GBDT + HCE tun t (GT2)1"
+    },
+    "prediction_02": {
+      "model": "GBDT + mã hóa phẳng co ngót (H1c)",
+      "npz_key": "GBDT + m ha phng co ngt (H1c)2"
+    },
+    "prediction_03": {
+      "model": "GBDT + mã hóa cấp quận (lùi về nút cha)",
+      "npz_key": "GBDT + m ha cp qun (li v nt cha)3"
+    },
+    "prediction_04": {
+      "model": "GBDT phân loại nội tại (bang/quận/tract)",
+      "npz_key": "GBDT phn loi ni ti (bang/qun/tract)4"
+    },
+    "prediction_05": {
+      "model": "GBDT không biến địa lý",
+      "npz_key": "GBDT khng bin a l5"
+    },
+    "prediction_06": {
+      "model": "EAGB-PG (Poisson–Gamma)",
+      "npz_key": "EAGB-PG (PoissonGamma)6"
+    },
+    "prediction_07": {
+      "model": "Tín nhiệm phân cấp thuần (HCE)",
+      "npz_key": "Tn nhim phn cp thun (HCE)7"
+    },
+    "prediction_08": {
+      "model": "GLM Tweedie (đối chứng chính)",
+      "npz_key": "GLM Tweedie (i chng chnh)8"
+    },
+    "prediction_09": {
+      "model": "GLM Tweedie + spline (xấp xỉ GAM)",
+      "npz_key": "GLM Tweedie + spline (xp x GAM)9"
+    },
+    "prediction_10": {
+      "model": "CatBoost OTS (có thứ tự thời gian)",
+      "npz_key": "CatBoost OTS (c th t thi gian)10"
+    },
+    "prediction_11": {
+      "model": "Mô hình rỗng",
+      "npz_key": "M hnh rng11"
+    }
+  },
+  "source_cells": "data/nfip_cells.parquet",
+  "source_predictions": "results/kb2_test_preds.npz",
+  "sha256": "f698303d0b53e3b8ddb9dee754af8a062a356b79c797f82074532b715ebdcfb8",
+  "contains_person_or_policy_identifier": false
+}

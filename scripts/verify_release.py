@@ -34,6 +34,7 @@ def main() -> None:
         "results/reference/kb2_test.json",
         "results/supplementary/kb2_pilot.json",
         "results/supplementary/numerical_stability.json",
+        "results/replay_verification.json",
         "code/numerical_stability.py",
         "results/audit/matching_audit_summary.json",
         "artifacts/model_selection/model_selection.csv",

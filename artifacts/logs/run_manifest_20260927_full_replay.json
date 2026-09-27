@@ -1,0 +1,19 @@
+{
+  "release": "1.0.0",
+  "mode": "full_replay",
+  "started_at_utc": "2026-09-27T07:22:47Z",
+  "finished_at_utc": "2026-09-27T08:32:24Z",
+  "status": "complete",
+  "python": "3.11.15",
+  "platform": "linux/amd64",
+  "thread_limit": 2,
+  "seed": 20260918,
+  "docker_image_digest": "sha256:432560d24e553a8982d30616c0dd2a65d5d8f1a5c874d20c1b0ee0b26b3ca920",
+  "logs": [
+    "artifacts/logs/run_full_20260927T072247Z.log",
+    "artifacts/logs/run_full_continuation_20260927T151246Z.log",
+    "artifacts/logs/run_full_packaging_20260927T152830Z.log"
+  ],
+  "verification": "passed",
+  "comparison": "results/replay_verification.json"
+}

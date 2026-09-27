@@ -11,6 +11,8 @@ The repository supports two levels of verification:
 
 Raw NFIP files are not included because of their size and their original distribution terms. Their expected names, sizes, and SHA-256 values are recorded in `data/raw_manifest.json`. A fresh download from OpenFEMA may not be byte-identical to the September 2026 snapshot used in the study.
 
+A clean Docker replay was completed on 2026-09-27 with Python 3.11.15 on Linux/amd64. It rebuilt the 2,453,910-cell study table, reproduced all locked NFIP point metrics exactly, reran robustness and spatial analyses, reran freMTPL2, exported 399,128 test-cell predictions, rebuilt seven figures, and passed release verification. The machine-readable comparison is in `results/replay_verification.json` and the run manifest is in `artifacts/logs/run_manifest_20260927_full_replay.json`.
+
 The committed JSON files in `results/reference/` are the original reference results. Results from a new replay are written directly under `results/`; they do not overwrite `results/reference/`.
 
 ## Repository layout
@@ -47,7 +49,7 @@ docker run --rm hce-repro:v1.0.0
 
 ## Full replay
 
-Place the NFIP files described by `data/raw_manifest.json` under `data/raw/`. Then run:
+Place all files described by `data/raw_manifest.json`, including OpenML freMTPL2freq version 1, under `data/raw/`. Then run:
 
 ```bash
 python scripts/run_all.py --mode full --rebuild-cells
@@ -77,7 +79,7 @@ After `kb2_h1.py test` creates `results/kb2_test_preds.npz`, the exporter writes
 
 The Parquet file contains one row per 2021–2023 risk cell, observed exposure/loss/count fields, geography at the public aggregate level, the split label, and one prediction column per model. It contains no person or policy identifier.
 
-If the large prediction artifact is not committed to GitHub, the two files can be deterministically regenerated from the risk-cell table and saved NPZ output using `scripts/export_cell_predictions.py`.
+The replay-generated prediction artifact and schema are committed to this release. They can also be deterministically regenerated from the risk-cell table and saved NPZ output using `scripts/export_cell_predictions.py`.
 
 ## Model selection and seeds
 
@@ -111,8 +113,8 @@ For publication, create a Git tag such as `v1.0.0`, create a GitHub Release from
 ## Limitations
 
 - The raw NFIP snapshot is not redistributed.
-- A full replay is computationally intensive and was not run while assembling this GitHub package.
-- The committed repository does not include the historical per-cell prediction arrays because they were absent from the archived material. The deterministic export mechanism is included and produces them during a full replay.
+- The completed replay took approximately 66 minutes across the NFIP, spatial, freMTPL2, export, and verification stages on the documented two-thread container; runtime is hardware-dependent.
+- Historical per-cell prediction arrays were absent from the archived material. The committed cell-level artifact is therefore a deterministic replay output, not a recovered historical file.
 - The local preregistration timestamp and hash are preserved, but they are not evidence of an independently timestamped registry deposit.
 - Small numerical variation may occur across CPU/BLAS implementations even with fixed seeds. The environment, thread counts, and release hashes should therefore be reported with any replay.
 

@@ -20,6 +20,7 @@ supplementary,results/supplementary/kb2_pilot.json,results/tables/sources/supple
 supplementary,results/supplementary/kb3_robust.json,results/tables/sources/supplementary/kb3_robust.csv,142
 supplementary,results/supplementary/kgrid_ext.json,results/tables/sources/supplementary/kgrid_ext.csv,4
 supplementary,results/supplementary/nfip_desc.json,results/tables/sources/supplementary/nfip_desc.csv,37
+supplementary,results/supplementary/numerical_stability.json,results/tables/sources/supplementary/numerical_stability.csv,17
 supplementary,results/supplementary/spatial_oos.json,results/tables/sources/supplementary/spatial_oos.csv,313
 supplementary,results/supplementary/tk_results.json,results/tables/sources/supplementary/tk_results.csv,16
 supplementary,results/supplementary/unmatched_claims.json,results/tables/sources/supplementary/unmatched_claims.csv,128

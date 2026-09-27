@@ -20,6 +20,13 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def display_path(path: Path) -> str:
+    try:
+        return path.resolve().relative_to(ROOT.resolve()).as_posix()
+    except ValueError:
+        return str(path)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--cells", type=Path, default=ROOT / "data" / "nfip_cells.parquet")
@@ -33,7 +40,12 @@ def main() -> None:
             raise SystemExit(f"Missing required replay artifact: {path}")
 
     cells = pd.read_parquet(args.cells)
-    mask = cells["year"].between(2021, 2023)
+    # Mirror code/nfip_lib.py::load() exactly. The rebuilt cell table can retain
+    # a few rows outside the eight declared study states; those rows were never
+    # passed to kb2_h1.py and therefore have no corresponding predictions.
+    study_states = ["09", "10", "23", "24", "25", "33", "34", "44"]
+    state = cells["state"].astype(str).str.zfill(2)
+    mask = cells["year"].between(2021, 2023) & state.isin(study_states)
     test = cells.loc[mask].reset_index(drop=True)
     metrics = json.loads(args.metrics.read_text(encoding="utf-8"))
     model_names = list(metrics["eval"].keys())
@@ -78,8 +90,8 @@ def main() -> None:
         "columns": {column: str(dtype) for column, dtype in output.dtypes.items()},
         "risk_cell_key": key_columns,
         "prediction_columns": mapping,
-        "source_cells": str(args.cells),
-        "source_predictions": str(args.predictions),
+        "source_cells": display_path(args.cells),
+        "source_predictions": display_path(args.predictions),
         "sha256": sha256(args.output),
         "contains_person_or_policy_identifier": False,
     }
