@@ -43,6 +43,11 @@ def main() -> None:
     parser.add_argument("--mode", choices=("verify", "full"), default="verify")
     parser.add_argument("--rebuild-cells", action="store_true")
     parser.add_argument("--skip-fremtpl2", action="store_true")
+    parser.add_argument(
+        "--include-postreview-exploratory",
+        action="store_true",
+        help="also rerun the approximately one-hour REVIEWEDv8 ablation and missing-deductible sensitivity analysis",
+    )
     args = parser.parse_args()
 
     seeds = json.loads((ROOT / "configs" / "seeds.json").read_text(encoding="utf-8"))
@@ -79,6 +84,8 @@ def main() -> None:
             run([sys.executable, "scripts/build_model_selection_log.py"], ROOT, log)
             run([sys.executable, "scripts/build_tables.py"], ROOT, log)
             run([sys.executable, "build_all.py"], ROOT / "figures", log)
+            if args.include_postreview_exploratory:
+                run([sys.executable, "postreview_analysis.py"], CODE, log)
             run([sys.executable, "scripts/generate_checksums.py"], ROOT, log)
             run([sys.executable, "scripts/verify_release.py"], ROOT, log)
 

@@ -1,0 +1,169 @@
+{
+  "status": "post-review exploratory; configurations fixed from the baseline same-grid analysis",
+  "missing_claims": {
+    "positive_claims": 1123,
+    "amount": 74396139.94
+  },
+  "scenarios": {
+    "retained": {
+      "allocation_audit": null,
+      "test_2021_2023": {
+        "deviance": {
+          "EAGB (HCE đồng thời)": 290.69659963426193,
+          "GBDT + HCE tuần tự": 399.1814938773738,
+          "GBDT + mã hóa phẳng": 399.88932623939286,
+          "GBDT không dùng địa lý": 219.60967827067452,
+          "GBDT địa lý phân loại nội tại": 671.037594042215
+        },
+        "relative_EAGB_vs_comparator": {
+          "GBDT + HCE tuần tự": -0.27176834574510056,
+          "GBDT + mã hóa phẳng": -0.2730573672270586,
+          "GBDT không dùng địa lý": 0.3236966691238943,
+          "GBDT địa lý phân loại nội tại": -0.566795359581636
+        }
+      },
+      "bootstrap_EAGB_vs_comparators": {
+        "GBDT + HCE tuần tự": {
+          "relative": -0.27176834574510067,
+          "ci95": [
+            -0.40188597582364216,
+            -0.08008826543475975
+          ]
+        },
+        "GBDT + mã hóa phẳng": {
+          "relative": -0.27305736722705815,
+          "ci95": [
+            -0.42270714514076785,
+            -0.12104755602207243
+          ]
+        },
+        "GBDT không dùng địa lý": {
+          "relative": 0.3236966691238938,
+          "ci95": [
+            0.08494702125057065,
+            0.5841879586023995
+          ]
+        },
+        "GBDT địa lý phân loại nội tại": {
+          "relative": -0.5667953595816357,
+          "ci95": [
+            -0.7422509460339709,
+            -0.27753403382912273
+          ]
+        }
+      }
+    },
+    "missing_ded_tract_year": {
+      "allocation_audit": {
+        "scope": "tract",
+        "input_positive_claims": 1123.0,
+        "input_amount": 74396139.94,
+        "allocated_positive_claims": 1122.0,
+        "allocated_amount": 74241101.27,
+        "unallocated_positive_claims": 1.0,
+        "unallocated_amount": 155038.67
+      },
+      "test_2021_2023": {
+        "deviance": {
+          "EAGB (HCE đồng thời)": 280.8545552899526,
+          "GBDT + HCE tuần tự": 385.78133529755337,
+          "GBDT + mã hóa phẳng": 421.8565284550435,
+          "GBDT không dùng địa lý": 217.13250735706006,
+          "GBDT địa lý phân loại nội tại": 581.7475321848124
+        },
+        "relative_EAGB_vs_comparator": {
+          "GBDT + HCE tuần tự": -0.27198511282737586,
+          "GBDT + mã hóa phẳng": -0.3342415339202632,
+          "GBDT không dùng địa lý": 0.29347078753208444,
+          "GBDT địa lý phân loại nội tại": -0.5172226098920014
+        }
+      },
+      "bootstrap_EAGB_vs_comparators": {
+        "GBDT + HCE tuần tự": {
+          "relative": -0.27198511282737414,
+          "ci95": [
+            -0.4117761607664215,
+            -0.03188449658167263
+          ]
+        },
+        "GBDT + mã hóa phẳng": {
+          "relative": -0.3342415339202646,
+          "ci95": [
+            -0.46859908169180525,
+            -0.15751988511676482
+          ]
+        },
+        "GBDT không dùng địa lý": {
+          "relative": 0.29347078753208455,
+          "ci95": [
+            0.05556096317173857,
+            0.5436259795173427
+          ]
+        },
+        "GBDT địa lý phân loại nội tại": {
+          "relative": -0.5172226098920022,
+          "ci95": [
+            -0.6957417998085315,
+            -0.24212324632109633
+          ]
+        }
+      }
+    },
+    "missing_ded_county_year": {
+      "allocation_audit": {
+        "scope": "county",
+        "input_positive_claims": 1123.0,
+        "input_amount": 74396139.94,
+        "allocated_positive_claims": 1122.9999999999998,
+        "allocated_amount": 74396139.94,
+        "unallocated_positive_claims": 0.0,
+        "unallocated_amount": 0.0
+      },
+      "test_2021_2023": {
+        "deviance": {
+          "EAGB (HCE đồng thời)": 266.54898130347027,
+          "GBDT + HCE tuần tự": 361.61948837272257,
+          "GBDT + mã hóa phẳng": 401.50436325229794,
+          "GBDT không dùng địa lý": 197.84819002411632,
+          "GBDT địa lý phân loại nội tại": 545.1855871662291
+        },
+        "relative_EAGB_vs_comparator": {
+          "GBDT + HCE tuần tự": -0.26290205623891255,
+          "GBDT + mã hóa phẳng": -0.33612432217585686,
+          "GBDT không dùng địa lý": 0.34723992810335946,
+          "GBDT địa lý phân loại nội tại": -0.5110857888064482
+        }
+      },
+      "bootstrap_EAGB_vs_comparators": {
+        "GBDT + HCE tuần tự": {
+          "relative": -0.26290205623891205,
+          "ci95": [
+            -0.4118177355829225,
+            -0.01921539582704011
+          ]
+        },
+        "GBDT + mã hóa phẳng": {
+          "relative": -0.33612432217585664,
+          "ci95": [
+            -0.4665046996049522,
+            -0.1671893583606062
+          ]
+        },
+        "GBDT không dùng địa lý": {
+          "relative": 0.34723992810336207,
+          "ci95": [
+            0.08428409850699568,
+            0.630236941908015
+          ]
+        },
+        "GBDT địa lý phân loại nội tại": {
+          "relative": -0.511085788806447,
+          "ci95": [
+            -0.7109054897310737,
+            -0.16331563451302972
+          ]
+        }
+      }
+    }
+  }
+}

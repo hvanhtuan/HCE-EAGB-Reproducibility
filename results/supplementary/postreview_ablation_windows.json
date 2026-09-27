@@ -1,0 +1,278 @@
+{
+  "protocol": {
+    "analysis_id": "reviewedv8_postreview_exploratory_20260927",
+    "recorded_at": "2026-09-27T18:57:22+07:00",
+    "status": "post-review exploratory; not independently preregistered",
+    "reason_not_confirmatory": "The 2019-2024 snapshot and some 2024 aggregate results were already available before this analysis. No window in the current snapshot can honestly be described as never observed.",
+    "objectives": [
+      "Run a same-grid, same-cap geography-representation ablation and report 2021, 2022, 2023 and 2024 separately.",
+      "Include the claims excluded for missing deductible group in label-sensitivity scenarios.",
+      "Publish every Table 10 candidate and make cap extensions explicit."
+    ],
+    "ablation": {
+      "train_years": [
+        2012,
+        2018
+      ],
+      "pilot_years": [
+        2019,
+        2020
+      ],
+      "evaluation_years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "representations": [
+        "HCE simultaneous",
+        "HCE sequential",
+        "flat shrinkage",
+        "no geography",
+        "native categorical geography"
+      ],
+      "lightgbm_grid": [
+        {
+          "num_leaves": 31,
+          "min_data_in_leaf": 500
+        },
+        {
+          "num_leaves": 15,
+          "min_data_in_leaf": 500
+        },
+        {
+          "num_leaves": 63,
+          "min_data_in_leaf": 500
+        },
+        {
+          "num_leaves": 31,
+          "min_data_in_leaf": 100
+        },
+        {
+          "num_leaves": 31,
+          "min_data_in_leaf": 2000
+        }
+      ],
+      "round_cap": 4000,
+      "early_stopping_rounds": 150,
+      "selection_metric": "exposure-weighted Tweedie deviance with evaluation power 1.5 on 2019-2020",
+      "seed": 20260927
+    },
+    "missing_deductible_sensitivity": {
+      "scenarios": [
+        "current retained labels",
+        "allocate missing-deductible claim counts and amounts across exposure cells within tract-year",
+        "allocate missing-deductible claim counts and amounts across exposure cells within county-year"
+      ],
+      "allocation_weight": "cell exposure",
+      "model_configuration": "configuration selected in the same-grid baseline ablation, then held fixed across label scenarios",
+      "bootstrap_clusters": "county",
+      "bootstrap_replicates": 600,
+      "seed": 20260927
+    }
+  },
+  "selected": {
+    "EAGB": {
+      "model": "EAGB",
+      "num_leaves": 15,
+      "min_data": 500,
+      "best_iter": 1673,
+      "pilot_dev": 40.65107959425669,
+      "sec": 92.52351832389832,
+      "source": "historical_v4_tune",
+      "cap": 4000,
+      "cap_extension": false,
+      "selected_same_cap": true
+    },
+    "TuanTu": {
+      "model": "TuanTu",
+      "num_leaves": 63,
+      "min_data": 500,
+      "best_iter": 608,
+      "pilot_dev": 47.83920887600978,
+      "sec": 25.8877055644989,
+      "source": "postreview_same_grid",
+      "cap": 4000,
+      "cap_extension": false,
+      "selected_same_cap": true
+    },
+    "Phang": {
+      "model": "Phang",
+      "num_leaves": 63,
+      "min_data": 500,
+      "best_iter": 1166,
+      "pilot_dev": 43.23121415705271,
+      "sec": 104.85175347328186,
+      "source": "historical_v4_tune",
+      "cap": 4000,
+      "cap_extension": false,
+      "selected_same_cap": true
+    },
+    "KhongDiaLy": {
+      "model": "KhongDiaLy",
+      "num_leaves": 63,
+      "min_data": 500,
+      "best_iter": 3987,
+      "pilot_dev": 66.55005057184111,
+      "sec": 342.2935359477997,
+      "source": "historical_v4_tune",
+      "cap": 4000,
+      "cap_extension": false,
+      "selected_same_cap": true
+    },
+    "DiaLyPhanLoai": {
+      "model": "DiaLyPhanLoai",
+      "num_leaves": 31,
+      "min_data": 2000,
+      "best_iter": 3993,
+      "pilot_dev": 77.26353807111879,
+      "sec": 329.7114734649658,
+      "source": "historical_v4_tune",
+      "cap": 4000,
+      "cap_extension": false,
+      "selected_same_cap": true
+    }
+  },
+  "candidate_count": 27,
+  "same_cap_candidate_count": 25,
+  "metrics": {
+    "by_year": {
+      "2021": {
+        "EAGB (HCE đồng thời)": 742.711493124626,
+        "GBDT + HCE tuần tự": 1050.674600330698,
+        "GBDT + mã hóa phẳng": 998.315402061804,
+        "GBDT không dùng địa lý": 497.39314432429626,
+        "GBDT địa lý phân loại nội tại": 1643.838816666218
+      },
+      "2022": {
+        "EAGB (HCE đồng thời)": 43.34040242519977,
+        "GBDT + HCE tuần tự": 44.375779828909565,
+        "GBDT + mã hóa phẳng": 73.39476251438411,
+        "GBDT không dùng địa lý": 67.00660988828864,
+        "GBDT địa lý phân loại nội tại": 73.76678115960043
+      },
+      "2023": {
+        "EAGB (HCE đồng thời)": 89.29456490818995,
+        "GBDT + HCE tuần tự": 107.21282296871942,
+        "GBDT + mã hóa phẳng": 132.28360929822313,
+        "GBDT không dùng địa lý": 96.42204809129777,
+        "GBDT địa lý phân loại nội tại": 301.57242665934353
+      },
+      "2024": {
+        "EAGB (HCE đồng thời)": 138.2543472784764,
+        "GBDT + HCE tuần tự": 130.78753546786132,
+        "GBDT + mã hóa phẳng": 341.6528241166213,
+        "GBDT không dùng địa lý": 141.3245037248587,
+        "GBDT địa lý phân loại nội tại": 396.88108162990477
+      }
+    },
+    "windows": {
+      "2021-2023": {
+        "deviance": {
+          "EAGB (HCE đồng thời)": 290.69659963426193,
+          "GBDT + HCE tuần tự": 399.1814938773738,
+          "GBDT + mã hóa phẳng": 399.88932623939286,
+          "GBDT không dùng địa lý": 219.60967827067452,
+          "GBDT địa lý phân loại nội tại": 671.037594042215
+        },
+        "relative_EAGB_vs_comparator": {
+          "GBDT + HCE tuần tự": -0.27176834574510056,
+          "GBDT + mã hóa phẳng": -0.2730573672270586,
+          "GBDT không dùng địa lý": 0.3236966691238943,
+          "GBDT địa lý phân loại nội tại": -0.566795359581636
+        }
+      },
+      "2022-2023": {
+        "deviance": {
+          "EAGB (HCE đồng thời)": 66.48567116166997,
+          "GBDT + HCE tuần tự": 76.02427849569314,
+          "GBDT + mã hóa phẳng": 103.05471301173642,
+          "GBDT không dùng địa lý": 81.82198645970772,
+          "GBDT địa lý phân loại nội tại": 188.5033490761252
+        },
+        "relative_EAGB_vs_comparator": {
+          "GBDT + HCE tuần tự": -0.12546791002513152,
+          "GBDT + mã hóa phẳng": -0.3548507465728596,
+          "GBDT không dùng địa lý": -0.1874351376886937,
+          "GBDT địa lý phân loại nội tại": -0.6472971356343362
+        }
+      },
+      "2024": {
+        "deviance": {
+          "EAGB (HCE đồng thời)": 138.2543472784764,
+          "GBDT + HCE tuần tự": 130.78753546786132,
+          "GBDT + mã hóa phẳng": 341.6528241166213,
+          "GBDT không dùng địa lý": 141.3245037248587,
+          "GBDT địa lý phân loại nội tại": 396.88108162990477
+        },
+        "relative_EAGB_vs_comparator": {
+          "GBDT + HCE tuần tự": 0.057091157684899606,
+          "GBDT + mã hóa phẳng": -0.5953367350732507,
+          "GBDT không dùng địa lý": -0.021724162232754154,
+          "GBDT địa lý phân loại nội tại": -0.651647927609208
+        }
+      }
+    }
+  },
+  "bootstrap_2021_2023": {
+    "GBDT + HCE tuần tự": {
+      "relative": -0.27176834574510067,
+      "ci95": [
+        -0.40188597582364216,
+        -0.08008826543475975
+      ]
+    },
+    "GBDT + mã hóa phẳng": {
+      "relative": -0.27305736722705815,
+      "ci95": [
+        -0.42270714514076785,
+        -0.12104755602207243
+      ]
+    },
+    "GBDT không dùng địa lý": {
+      "relative": 0.3236966691238938,
+      "ci95": [
+        0.08494702125057065,
+        0.5841879586023995
+      ]
+    },
+    "GBDT địa lý phân loại nội tại": {
+      "relative": -0.5667953595816357,
+      "ci95": [
+        -0.7422509460339709,
+        -0.27753403382912273
+      ]
+    }
+  },
+  "bootstrap_2024": {
+    "GBDT + HCE tuần tự": {
+      "relative": 0.057091157684899405,
+      "ci95": [
+        -0.22547395013403077,
+        0.44690504962214206
+      ]
+    },
+    "GBDT + mã hóa phẳng": {
+      "relative": -0.5953367350732509,
+      "ci95": [
+        -0.6825144161676381,
+        -0.4362566606355807
+      ]
+    },
+    "GBDT không dùng địa lý": {
+      "relative": -0.0217241622327546,
+      "ci95": [
+        -0.18426304278538178,
+        0.17622237987522482
+      ]
+    },
+    "GBDT địa lý phân loại nội tại": {
+      "relative": -0.6516479276092083,
+      "ci95": [
+        -0.7663123805329428,
+        -0.48283205449975986
+      ]
+    }
+  },
+  "interpretation": "Post-review exploratory. The current snapshot contains already-accessible outcomes, so these results cannot convert the original gatekeeping sequence into confirmation."
+}

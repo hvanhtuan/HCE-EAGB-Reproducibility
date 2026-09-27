@@ -6,6 +6,10 @@
 - Preserved the superseded pre-full-replay H1b audit under `results/audit/history/`.
 - Added H1b provenance and point-estimand checks to release verification.
 - Clarified that checksum counts are taken from the final verifier run.
+- Added a 25-candidate same-cap ablation across five geography representations and retained two historical cap-extension fits as explicitly flagged audit rows.
+- Added annual 2021-2024 results and paired county-cluster intervals, labelled post-review exploratory rather than confirmatory.
+- Added tract-year and county-year sensitivity analyses that include the 1,123 positive claims excluded for missing deductible group.
+- Published the complete Table 10 candidate log and a recorded post-review analysis protocol.
 
 ## v1.0.0 — 2026-09-27
 

@@ -1,0 +1,46 @@
+{
+  "analysis_id": "reviewedv8_postreview_exploratory_20260927",
+  "recorded_at": "2026-09-27T18:57:22+07:00",
+  "status": "post-review exploratory; not independently preregistered",
+  "reason_not_confirmatory": "The 2019-2024 snapshot and some 2024 aggregate results were already available before this analysis. No window in the current snapshot can honestly be described as never observed.",
+  "objectives": [
+    "Run a same-grid, same-cap geography-representation ablation and report 2021, 2022, 2023 and 2024 separately.",
+    "Include the claims excluded for missing deductible group in label-sensitivity scenarios.",
+    "Publish every Table 10 candidate and make cap extensions explicit."
+  ],
+  "ablation": {
+    "train_years": [2012, 2018],
+    "pilot_years": [2019, 2020],
+    "evaluation_years": [2021, 2022, 2023, 2024],
+    "representations": [
+      "HCE simultaneous",
+      "HCE sequential",
+      "flat shrinkage",
+      "no geography",
+      "native categorical geography"
+    ],
+    "lightgbm_grid": [
+      {"num_leaves": 31, "min_data_in_leaf": 500},
+      {"num_leaves": 15, "min_data_in_leaf": 500},
+      {"num_leaves": 63, "min_data_in_leaf": 500},
+      {"num_leaves": 31, "min_data_in_leaf": 100},
+      {"num_leaves": 31, "min_data_in_leaf": 2000}
+    ],
+    "round_cap": 4000,
+    "early_stopping_rounds": 150,
+    "selection_metric": "exposure-weighted Tweedie deviance with evaluation power 1.5 on 2019-2020",
+    "seed": 20260927
+  },
+  "missing_deductible_sensitivity": {
+    "scenarios": [
+      "current retained labels",
+      "allocate missing-deductible claim counts and amounts across exposure cells within tract-year",
+      "allocate missing-deductible claim counts and amounts across exposure cells within county-year"
+    ],
+    "allocation_weight": "cell exposure",
+    "model_configuration": "configuration selected in the same-grid baseline ablation, then held fixed across label scenarios",
+    "bootstrap_clusters": "county",
+    "bootstrap_replicates": 600,
+    "seed": 20260927
+  }
+}

@@ -15,6 +15,8 @@ A clean Docker replay was completed on 2026-09-27 with Python 3.11.15 on Linux/a
 
 The committed JSON files in `results/reference/` are the original reference results. Results from a new replay are written directly under `results/`; they do not overwrite `results/reference/`.
 
+An additional REVIEWEDv8 analysis was recorded and run on 2026-09-27. It applies one common five-candidate LightGBM grid and a 4,000-round cap to five geography representations, reports 2021-2024 separately, and reruns the models after adding the 1,123 positive claims excluded for missing deductible group under tract-year and county-year exposure-weighted allocations. These analyses are explicitly post-review and exploratory: the current snapshot and some 2024 aggregates had already been accessible, so they are not presented as a new confirmatory holdout.
+
 ## Repository layout
 
 ```text
@@ -67,6 +69,7 @@ python scripts/recompute_h1b.py
 python scripts/build_tables.py
 python figures/build_all.py
 python code/numerical_stability.py
+python code/postreview_analysis.py
 ```
 
 On Windows, execute these commands from PowerShell. The orchestrator changes into the required working directories automatically.
@@ -96,6 +99,14 @@ The replay-generated prediction artifact and schema are committed to this releas
 python scripts/build_model_selection_log.py
 ```
 
+`artifacts/model_selection/table10_candidates.csv` is the separate full log for the baseline-tuning analysis: 25 candidates under the common 4,000-round cap (five representations times five configurations), plus the two historical cap-extension fits, which are flagged rather than mixed into the equal-cap selection. The sequential-HCE grid and the missing-deductible analyses are rebuilt by `code/postreview_analysis.py`. The corresponding protocol is `configs/postreview_exploratory.json`.
+
+The optional long rerun can also be appended to the full workflow:
+
+```bash
+python scripts/run_all.py --mode full --include-postreview-exploratory
+```
+
 ## Tables and figures
 
 `scripts/build_tables.py` converts the reference or replay JSON into CSV tables under `results/tables/`. The complete figure set is rebuilt by `figures/build_all.py` from the machine-readable data in `figures/data/`. `configs/paper_outputs.json` maps each delivered output to its inputs and builder.
@@ -121,6 +132,7 @@ For publication, create a Git tag such as `v1.0.0`, create a GitHub Release from
 - The completed replay took approximately 66 minutes across the NFIP, spatial, freMTPL2, export, and verification stages on the documented two-thread container; runtime is hardware-dependent.
 - Historical per-cell prediction arrays were absent from the archived material. The committed cell-level artifact is therefore a deterministic replay output, not a recovered historical file.
 - The local preregistration timestamp and hash are preserved, but they are not evidence of an independently timestamped registry deposit.
+- The post-review 2021-2024 ablation and missing-deductible analyses are exploratory; no outcome in the current snapshot is relabelled as a previously unseen confirmatory window.
 - Small numerical variation may occur across CPU/BLAS implementations even with fixed seeds. The environment, thread counts, and release hashes should therefore be reported with any replay.
 
 ## License

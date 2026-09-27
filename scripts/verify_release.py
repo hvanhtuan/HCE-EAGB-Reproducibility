@@ -34,10 +34,15 @@ def main() -> None:
         "results/reference/kb2_test.json",
         "results/supplementary/kb2_pilot.json",
         "results/supplementary/numerical_stability.json",
+        "results/supplementary/postreview_ablation_windows.json",
+        "results/supplementary/missing_ded_sensitivity.json",
         "results/replay_verification.json",
         "code/numerical_stability.py",
+        "code/postreview_analysis.py",
         "results/audit/matching_audit_summary.json",
         "artifacts/model_selection/model_selection.csv",
+        "artifacts/model_selection/table10_candidates.csv",
+        "configs/postreview_exploratory.json",
         "scripts/run_all.py", "scripts/export_cell_predictions.py",
         "scripts/recompute_h1b.py",
         "figures/build_all.py", "SHA256SUMS.txt",
@@ -61,6 +66,7 @@ def main() -> None:
     seed = json.loads((ROOT / "configs" / "seeds.json").read_text(encoding="utf-8"))
     check(seed.get("global") == 20260918, "central seed matches historical core seed")
     check(seed.get("numerical_stability") == 20260927, "numerical-stability seed is recorded")
+    check(seed.get("reviewedv8_postreview_exploratory") == 20260927, "REVIEWEDv8 exploratory seed is recorded")
 
     prereg = json.loads((ROOT / "results" / "prereg_H1.json").read_text(encoding="utf-8"))
     check(prereg.get("data_split", {}).get("test") == [2021, 2023], "locked test window is 2021-2023")
@@ -72,6 +78,33 @@ def main() -> None:
             rows = list(csv.DictReader(handle))
         check(len(rows) >= 30, f"model-selection log has {len(rows)} rows")
         check(any(row.get("selected") == "true" for row in rows), "model-selection log records selected candidates")
+
+    table10_path = ROOT / "artifacts" / "model_selection" / "table10_candidates.csv"
+    if table10_path.exists():
+        with table10_path.open(encoding="utf-8-sig", newline="") as handle:
+            table10 = list(csv.DictReader(handle))
+        check(len(table10) == 27, "Table 10 log contains all 27 recorded fits")
+        check(sum(row.get("cap_extension") == "False" for row in table10) == 25, "Table 10 log identifies 25 same-cap candidates")
+        check(sum(row.get("selected_same_cap") == "True" for row in table10) == 5, "Table 10 log identifies five selected representations")
+        check(sum(row.get("cap_extension") == "True" for row in table10) == 2, "Table 10 log identifies two historical cap extensions")
+
+    ablation_path = ROOT / "results" / "supplementary" / "postreview_ablation_windows.json"
+    if ablation_path.exists():
+        ablation = json.loads(ablation_path.read_text(encoding="utf-8"))
+        check(ablation.get("candidate_count") == 27, "post-review ablation references the full candidate log")
+        check(ablation.get("same_cap_candidate_count") == 25, "post-review ablation uses the common 4,000-round cap")
+        check(set(ablation.get("metrics", {}).get("by_year", {})) == {"2021", "2022", "2023", "2024"}, "post-review ablation reports four annual windows")
+        status = ablation.get("interpretation", "").lower()
+        check("exploratory" in status and "cannot" in status, "post-review ablation is explicitly non-confirmatory")
+
+    missing_path = ROOT / "results" / "supplementary" / "missing_ded_sensitivity.json"
+    if missing_path.exists():
+        missing = json.loads(missing_path.read_text(encoding="utf-8"))
+        check(missing.get("missing_claims", {}).get("positive_claims") == 1123, "missing-deductible sensitivity includes all 1,123 positive claims")
+        check(abs(missing.get("missing_claims", {}).get("amount", 0) - 74396139.94) < 0.01, "missing-deductible amount matches the audit")
+        county = missing.get("scenarios", {}).get("missing_ded_county_year", {}).get("allocation_audit", {})
+        check(abs(county.get("unallocated_positive_claims", -1)) < 1e-9, "county-year sensitivity allocates every missing-deductible claim")
+        check(abs(county.get("unallocated_amount", -1)) < 0.01, "county-year sensitivity allocates the full missing-deductible amount")
 
     prediction_path = ROOT / "artifacts" / "predictions" / "nfip_test_predictions.parquet"
     schema_path = prediction_path.with_suffix(".schema.json")

@@ -1,0 +1,16 @@
+﻿scenario,model,tweedie_deviance
+retained,EAGB (HCE đồng thời),290.69659963426193
+retained,GBDT + HCE tuần tự,399.1814938773738
+retained,GBDT + mã hóa phẳng,399.88932623939286
+retained,GBDT không dùng địa lý,219.60967827067452
+retained,GBDT địa lý phân loại nội tại,671.037594042215
+missing_ded_tract_year,EAGB (HCE đồng thời),280.8545552899526
+missing_ded_tract_year,GBDT + HCE tuần tự,385.78133529755337
+missing_ded_tract_year,GBDT + mã hóa phẳng,421.8565284550435
+missing_ded_tract_year,GBDT không dùng địa lý,217.13250735706006
+missing_ded_tract_year,GBDT địa lý phân loại nội tại,581.7475321848124
+missing_ded_county_year,EAGB (HCE đồng thời),266.54898130347027
+missing_ded_county_year,GBDT + HCE tuần tự,361.61948837272257
+missing_ded_county_year,GBDT + mã hóa phẳng,401.50436325229794
+missing_ded_county_year,GBDT không dùng địa lý,197.84819002411632
+missing_ded_county_year,GBDT địa lý phân loại nội tại,545.1855871662291
