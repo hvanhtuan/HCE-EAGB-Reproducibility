@@ -1,0 +1,13 @@
+﻿prediction_column,model,npz_key
+prediction_00,EAGB (HCE đồng thời),EAGB (HCE ng thi)0
+prediction_01,GBDT + HCE tuần tự (GT2),GBDT + HCE tun t (GT2)1
+prediction_02,GBDT + mã hóa phẳng co ngót (H1c),GBDT + m ha phng co ngt (H1c)2
+prediction_03,GBDT + mã hóa cấp quận (lùi về nút cha),GBDT + m ha cp qun (li v nt cha)3
+prediction_04,GBDT phân loại nội tại (bang/quận/tract),GBDT phn loi ni ti (bang/qun/tract)4
+prediction_05,GBDT không biến địa lý,GBDT khng bin a l5
+prediction_06,EAGB-PG (Poisson–Gamma),EAGB-PG (PoissonGamma)6
+prediction_07,Tín nhiệm phân cấp thuần (HCE),Tn nhim phn cp thun (HCE)7
+prediction_08,GLM Tweedie (đối chứng chính),GLM Tweedie (i chng chnh)8
+prediction_09,GLM Tweedie + spline (xấp xỉ GAM),GLM Tweedie + spline (xp x GAM)9
+prediction_10,CatBoost OTS (có thứ tự thời gian),CatBoost OTS (c th t thi gian)10
+prediction_11,Mô hình rỗng,M hnh rng11

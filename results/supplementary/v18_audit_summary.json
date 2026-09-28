@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "analyses_are_post_hoc": true,
+  "locked_H1_sequence_changed": false,
+  "outputs": {
+    "prediction_models": 12,
+    "h1b_rows": 399128,
+    "missing_label_bound_rows": 18
+  }
+}

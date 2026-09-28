@@ -75,9 +75,9 @@ python code/postreview_analysis.py
 
 On Windows, execute these commands from PowerShell. The orchestrator changes into the required working directories automatically.
 
-## Independent implementation oracle
+## Implementation-independent oracle on the same snapshot and specification
 
-The `oracle/` package independently recomputes the locked metrics from all 399,128 released test-cell predictions and refits the main penalized Tweedie GLM with a separate Newton solver in R. It does not import the Python metric or model-fitting modules used by the study pipeline.
+The `oracle/` package recomputes the locked metrics from all 399,128 released test-cell predictions and refits the main penalized Tweedie GLM with a separate Newton solver in R. It does not import the Python metric or model-fitting modules used by the study pipeline. This is implementation independence on the same released snapshot and specification, not a third-party replication.
 
 The metric oracle reproduces all reported metrics for 12 models with a maximum absolute difference of `2.78e-11`. The independently fitted GLM has prediction correlation `1.0` with the locked Python fit and maximum relative prediction difference `3.10e-8`. The null prediction matches the exposure-weighted training loss rate within `5.23e-12`. The machine-readable report is `oracle/results/oracle_report.json`.
 
@@ -93,7 +93,7 @@ or on a POSIX shell:
 bash oracle/run_oracle.sh
 ```
 
-This is an independent implementation oracle on the same released snapshot, not an external independent replication.
+This is an implementation-independent oracle on the same released snapshot and specification, not an external independent replication.
 
 ## Cell-level predictions
 
@@ -109,6 +109,10 @@ The replay-generated prediction artifact and schema are committed to this releas
 ## Post-review H1b audit
 
 `scripts/recompute_h1b.py` reads the committed cell-level predictions and recomputes the three H1b distance estimands with paired county-cluster bootstrap resampling. This uncertainty analysis is explicitly post-review and exploratory. It does not replace the locked simultaneous point rule, and H1b remains not met because the maximum-decile calibration component exceeds its margin. The pre-full-replay audit is retained under `results/audit/history/` for provenance.
+
+## Post-hoc calibration and label-selection bounds
+
+`code/v18_audits.py` lists all 12 released models, reports the fully specified actuarial-baseline audit, expands H1b into ten exposure-balanced calibration groups, and computes partial-identification bounds for excluded positive claims. The label audit distinguishes unmatched claims from claims with missing deductible group and evaluates tract-year and county-year feasibility sets separately. Its bounds keep released predictions fixed and therefore do not represent a retrained analysis. The county-level combined bounds can cross zero for some comparisons, so they are reported as a central limitation rather than evidence of predictive superiority.
 
 ## Model selection and seeds
 

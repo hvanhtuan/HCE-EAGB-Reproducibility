@@ -1,0 +1,26 @@
+{
+  "status": "post-hoc calibration audit; does not change the locked H1b point rule",
+  "source_rows": 399128,
+  "grouping": "ten exposure-balanced groups formed separately for each model after stable sorting by prediction",
+  "M_definition": "max_d abs(OE_d - 1); unbounded above when predicted loss is small",
+  "models": {
+    "EAGB": {
+      "max_abs_OE_minus_1": 32.51304153926395,
+      "max_decile": 2,
+      "OE_at_max": 33.51304153926395,
+      "cells_at_max": 12613,
+      "exposure_at_max": 119567.05270362765,
+      "observed_loss_at_max": 5172782.04,
+      "predicted_loss_at_max": 154351.3152615395
+    },
+    "GLM Tweedie": {
+      "max_abs_OE_minus_1": 22.116659839622375,
+      "max_decile": 1,
+      "OE_at_max": 23.116659839622375,
+      "cells_at_max": 36147,
+      "exposure_at_max": 119570.31074606434,
+      "observed_loss_at_max": 14899503.64,
+      "predicted_loss_at_max": 644535.3153686149
+    }
+  }
+}

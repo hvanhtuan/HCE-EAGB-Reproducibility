@@ -1,0 +1,8 @@
+﻿model,source,tweedie_deviance,mean_prediction,OE
+Mô hình rỗng,released cell-level predictions,169.58393014204958,1303.7729848983247,0.28653915019257087
+GLM Tweedie (đối chứng chính),released cell-level predictions,219.6196701628248,1362.5029135841894,0.2741880398288879
+GLM Tweedie + spline (xấp xỉ GAM),released cell-level predictions,230.4819318068207,1371.2475539169623,0.27243950377133747
+EAGB-PG (Poisson–Gamma),released cell-level predictions,193.1572114758134,324.86997291830045,1.149943159661442
+GLMM lồng nhau (PQL),post-hoc actuarial baseline audit,227.61340660338908,,0.31394566653642225
+LocalGLMnet,post-hoc actuarial baseline audit,228.25768035050848,,0.37017254922433446
+CANN,post-hoc actuarial baseline audit,429.2668140719803,,0.36986356797907777

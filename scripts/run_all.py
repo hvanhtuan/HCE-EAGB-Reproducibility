@@ -83,6 +83,7 @@ def main() -> None:
             run([sys.executable, "scripts/recompute_h1b.py"], ROOT, log)
             run([sys.executable, "scripts/build_model_selection_log.py"], ROOT, log)
             run([sys.executable, "scripts/build_tables.py"], ROOT, log)
+            run([sys.executable, "v18_audits.py"], CODE, log)
             run([sys.executable, "build_all.py"], ROOT / "figures", log)
             if args.include_postreview_exploratory:
                 run([sys.executable, "postreview_analysis.py"], CODE, log)

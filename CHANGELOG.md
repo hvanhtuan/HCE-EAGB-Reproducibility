@@ -2,6 +2,10 @@
 
 ## Unreleased — post-full-replay audit synchronization
 
+- Added exposure-balanced H1b calibration tables and a log-scale calibration figure, with the unbounded maximum O/E distance stated explicitly.
+- Added fixed-prediction partial-identification bounds and tipping fractions for unmatched and missing-deductible claims at tract-year and county-year scope.
+- Added a complete inventory of the 12 released models and a consolidated audit of locked and post-hoc actuarial baselines.
+- Renamed the R check as an implementation-independent oracle on the same snapshot and specification; it is not described as third-party replication.
 - Added an independent R implementation oracle for the released cell-level metrics, null model, penalized Tweedie GLM, and Tweedie-power sensitivity.
 - Added a synthetic fixture with frozen expected results and machine-readable oracle comparisons.
 - Recomputed the H1b distance estimands and paired county-cluster bootstrap directly from the released cell-level predictions.

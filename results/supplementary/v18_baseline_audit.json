@@ -1,0 +1,56 @@
+{
+  "status": "diagnostic only; does not replace the locked GLM in H1a",
+  "xi_eval": 1.5,
+  "rows": [
+    {
+      "model": "Mô hình rỗng",
+      "source": "released cell-level predictions",
+      "tweedie_deviance": 169.58393014204958,
+      "mean_prediction": 1303.7729848983247,
+      "OE": 0.28653915019257087
+    },
+    {
+      "model": "GLM Tweedie (đối chứng chính)",
+      "source": "released cell-level predictions",
+      "tweedie_deviance": 219.6196701628248,
+      "mean_prediction": 1362.5029135841894,
+      "OE": 0.2741880398288879
+    },
+    {
+      "model": "GLM Tweedie + spline (xấp xỉ GAM)",
+      "source": "released cell-level predictions",
+      "tweedie_deviance": 230.4819318068207,
+      "mean_prediction": 1371.2475539169623,
+      "OE": 0.27243950377133747
+    },
+    {
+      "model": "EAGB-PG (Poisson–Gamma)",
+      "source": "released cell-level predictions",
+      "tweedie_deviance": 193.1572114758134,
+      "mean_prediction": 324.86997291830045,
+      "OE": 1.149943159661442
+    },
+    {
+      "model": "GLMM lồng nhau (PQL)",
+      "source": "post-hoc actuarial baseline audit",
+      "tweedie_deviance": 227.61340660338908,
+      "mean_prediction": null,
+      "OE": 0.31394566653642225
+    },
+    {
+      "model": "LocalGLMnet",
+      "source": "post-hoc actuarial baseline audit",
+      "tweedie_deviance": 228.25768035050848,
+      "mean_prediction": null,
+      "OE": 0.37017254922433446
+    },
+    {
+      "model": "CANN",
+      "source": "post-hoc actuarial baseline audit",
+      "tweedie_deviance": 429.2668140719803,
+      "mean_prediction": null,
+      "OE": 0.36986356797907777
+    }
+  ],
+  "interpretation": "implementation agreement does not establish baseline adequacy; all listed actuarial alternatives remain above the null deviance on this test window"
+}

@@ -36,9 +36,15 @@ def main() -> None:
         "results/supplementary/numerical_stability.json",
         "results/supplementary/postreview_ablation_windows.json",
         "results/supplementary/missing_ded_sensitivity.json",
+        "results/supplementary/v18_audit_summary.json",
+        "results/supplementary/v18_prediction_inventory.json",
+        "results/supplementary/v18_baseline_audit.json",
+        "results/supplementary/v18_h1b_decile_calibration.json",
+        "results/supplementary/v18_missing_label_bounds.json",
         "results/replay_verification.json",
         "code/numerical_stability.py",
         "code/postreview_analysis.py",
+        "code/v18_audits.py",
         "results/audit/matching_audit_summary.json",
         "artifacts/model_selection/model_selection.csv",
         "artifacts/model_selection/table10_candidates.csv",
@@ -49,6 +55,7 @@ def main() -> None:
         "oracle/oracle_glm.R", "oracle/oracle_synthetic.R",
         "oracle/results/oracle_report.json",
         "figures/build_all.py", "SHA256SUMS.txt",
+        "figures/generated/v18_h1b_calibration.png",
     ]
     for relative in required:
         check((ROOT / relative).is_file(), f"required file: {relative}")
@@ -108,6 +115,19 @@ def main() -> None:
         county = missing.get("scenarios", {}).get("missing_ded_county_year", {}).get("allocation_audit", {})
         check(abs(county.get("unallocated_positive_claims", -1)) < 1e-9, "county-year sensitivity allocates every missing-deductible claim")
         check(abs(county.get("unallocated_amount", -1)) < 0.01, "county-year sensitivity allocates the full missing-deductible amount")
+
+    v18_path = ROOT / "results" / "supplementary" / "v18_audit_summary.json"
+    if v18_path.exists():
+        v18 = json.loads(v18_path.read_text(encoding="utf-8"))
+        outputs = v18.get("outputs", {})
+        check(v18.get("status") == "PASS", "post-hoc calibration and missing-label audit passed")
+        check(outputs.get("prediction_models") == 12, "prediction inventory lists all 12 released models")
+        check(outputs.get("h1b_rows") == 399128, "grouped H1b calibration uses all test cells")
+        check(outputs.get("missing_label_bound_rows") == 18, "missing-label audit reports all 18 family-scope-comparator bounds")
+        bounds = json.loads((ROOT / "results" / "supplementary" / "v18_missing_label_bounds.json").read_text(encoding="utf-8"))
+        rules = {(row["label_family"], row["scope"]) for row in bounds.get("rows", [])}
+        check({("missing_ded", "tract"), ("missing_ded", "county"), ("unmatched", "tract"), ("unmatched", "county")} <= rules,
+              "missing-label audit distinguishes the four source-family allocation rules")
 
     prediction_path = ROOT / "artifacts" / "predictions" / "nfip_test_predictions.parquet"
     schema_path = prediction_path.with_suffix(".schema.json")
