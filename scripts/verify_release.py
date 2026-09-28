@@ -49,6 +49,13 @@ def main() -> None:
         "artifacts/model_selection/model_selection.csv",
         "artifacts/model_selection/table10_candidates.csv",
         "configs/postreview_exploratory.json",
+        "configs/v19_multiseed_exploratory.json",
+        "code/v19_multiseed_and_figures.py",
+        "results/supplementary/v19_multiseed_summary.json",
+        "results/supplementary/v19_encoder_benchmark.json",
+        "results/supplementary/v19_xi_sensitivity.json",
+        "results/tables/sources/supplementary/v19_multiseed_runs.csv",
+        "results/tables/sources/supplementary/v19_multiseed_summary.csv",
         "scripts/run_all.py", "scripts/export_cell_predictions.py",
         "scripts/recompute_h1b.py",
         "oracle/README.md", "oracle/Dockerfile", "oracle/oracle_metrics.R",
@@ -56,6 +63,9 @@ def main() -> None:
         "oracle/results/oracle_report.json",
         "figures/build_all.py", "SHA256SUMS.txt",
         "figures/generated/v18_h1b_calibration.png",
+        "figures/generated/v19_multiseed_ranks.png",
+        "figures/generated/v19_deviance_year_event.png",
+        "figures/generated/v19_xi_sensitivity.png",
     ]
     for relative in required:
         check((ROOT / relative).is_file(), f"required file: {relative}")
@@ -77,6 +87,17 @@ def main() -> None:
     check(seed.get("global") == 20260918, "central seed matches historical core seed")
     check(seed.get("numerical_stability") == 20260927, "numerical-stability seed is recorded")
     check(seed.get("reviewedv8_postreview_exploratory") == 20260927, "REVIEWEDv8 exploratory seed is recorded")
+    check(seed.get("v19_multiseed_exploratory") == [20260918, 20260919, 20260920, 20260921, 20260922], "five exploratory algorithmic seeds are recorded")
+
+    multi_path = ROOT / "results" / "supplementary" / "v19_multiseed_summary.json"
+    if multi_path.exists():
+        multi = json.loads(multi_path.read_text(encoding="utf-8"))
+        runs = multi.get("runs", [])
+        check(len(runs) == 25, "multi-seed audit contains five models by five seeds")
+        check(len({row.get("seed") for row in runs}) == 5, "multi-seed audit contains five distinct seeds")
+        check(not any(row.get("reached_cap") for row in runs), "selected configurations stop before the common 12,000-round cap")
+        limit = multi.get("protocol", {}).get("important_limit", "").lower()
+        check("does not repeat" in limit and "between-event" in limit, "multi-seed scope limit is explicit")
 
     prereg = json.loads((ROOT / "results" / "prereg_H1.json").read_text(encoding="utf-8"))
     check(prereg.get("data_split", {}).get("test") == [2021, 2023], "locked test window is 2021-2023")

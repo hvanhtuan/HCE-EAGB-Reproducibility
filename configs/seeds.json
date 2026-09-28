@@ -12,5 +12,6 @@
   "numerical_stability": 20260927,
   "h1b_post_review_bootstrap": 20260925,
   "reviewedv8_postreview_exploratory": 20260927,
-  "notes": "Historical core seed preserved from code/nfip_lib.py. Post-review numerical-stability, H1b bootstrap, equal-grid ablation and missing-deductible sensitivity analyses use their separately documented seeds."
+  "v19_multiseed_exploratory": [20260918, 20260919, 20260920, 20260921, 20260922],
+  "notes": "Historical core seed preserved from code/nfip_lib.py. Post-review numerical-stability, H1b bootstrap, equal-grid ablation, missing-deductible sensitivity, and multi-seed analyses use their separately documented seeds."
 }

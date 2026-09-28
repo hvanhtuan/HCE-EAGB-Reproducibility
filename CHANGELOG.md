@@ -2,6 +2,9 @@
 
 ## Unreleased — post-full-replay audit synchronization
 
+- Added five-seed convergence-controlled refits for the five selected geography representations, with a shared 12,000-round cap and stopping rule.
+- Added machine-readable per-seed results, rank summaries, encoder resource measurements, and deviance/decision-sensitivity figures.
+- Recorded explicitly that the multi-seed run is post-hoc, reuses selected configurations, and does not replace independent-event evaluation.
 - Added exposure-balanced H1b calibration tables and a log-scale calibration figure, with the unbounded maximum O/E distance stated explicitly.
 - Added fixed-prediction partial-identification bounds and tipping fractions for unmatched and missing-deductible claims at tract-year and county-year scope.
 - Added a complete inventory of the 12 released models and a consolidated audit of locked and post-hoc actuarial baselines.

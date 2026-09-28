@@ -17,6 +17,8 @@ The committed JSON files in `results/reference/` are the original reference resu
 
 An additional REVIEWEDv8 analysis was recorded and run on 2026-09-27. It applies one common five-candidate LightGBM grid and a 4,000-round cap to five geography representations, reports 2021-2024 separately, and reruns the models after adding the 1,123 positive claims excluded for missing deductible group under tract-year and county-year exposure-weighted allocations. These analyses are explicitly post-review and exploratory: the current snapshot and some 2024 aggregates had already been accessible, so they are not presented as a new confirmatory holdout.
 
+A further post-hoc stability run recorded on 2026-09-28 refits the five already-selected Table 14a configurations over five fixed algorithmic seeds under one 12,000-round cap and one early-stopping rule. It publishes every run, rank distributions, an encoder time/memory benchmark, annual/event deviance plots, and `xi_eval` decision sensitivity. This is a convergence-controlled refit of selected configurations, not a repeated full-grid search, independent-event replication, or new confirmatory holdout.
+
 ## Repository layout
 
 ```text
@@ -71,6 +73,7 @@ python scripts/build_tables.py
 python figures/build_all.py
 python code/numerical_stability.py
 python code/postreview_analysis.py
+python code/v19_multiseed_and_figures.py
 ```
 
 On Windows, execute these commands from PowerShell. The orchestrator changes into the required working directories automatically.
