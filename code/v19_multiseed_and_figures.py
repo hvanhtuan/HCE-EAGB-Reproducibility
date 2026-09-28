@@ -149,7 +149,7 @@ def plot_multiseed(payload: dict) -> None:
     fig, ax = plt.subplots(figsize=(8.1, 4.5))
     ax.boxplot(vals, tick_labels=labels, showmeans=True)
     for i, values in enumerate(vals, 1):
-        ax.scatter(np.full(len(values), i), values, s=24, color="#176B87", alpha=.75, zorder=3)
+        ax.scatter(np.full(len(values), i), values, s=24, facecolors="white", edgecolors="black", alpha=.9, zorder=3)
     ax.set_ylabel("Thứ hạng deviance (1 = thấp nhất)")
     ax.set_title("Ổn định thứ hạng qua 5 seed thuật toán (hậu kiểm)")
     ax.tick_params(axis="x", labelrotation=12, labelsize=9)
@@ -164,15 +164,22 @@ def plot_year_event() -> None:
     keep = ["EAGB", "Tuần tự", "Phẳng", "Không địa lý", "Rỗng"]
     fig, axes = plt.subplots(1, 2, figsize=(11, 4.4))
     years = ["2021", "2022", "2023"]
-    for model in keep:
-        axes[0].plot(years, [yearly[model][y] for y in years], marker="o", label=model)
+    styles = ["-o", "--s", "-.^", ":D", "-x"]
+    for model, style in zip(keep, styles):
+        axes[0].plot(years, [yearly[model][y] for y in years], style, color="black", label=model)
     axes[0].set_yscale("log"); axes[0].set_ylabel("Tweedie deviance (thang log)")
     axes[0].set_title("Deviance theo năm"); axes[0].grid(alpha=.25)
     events = list(next(iter(event.values())).keys())
+    event_labels = {
+        "Ida": "Bão Ida", "Henri_Elsa": "Henri/Elsa",
+        "Dec_noreaster": "Nor’easter tháng 12", "None": "Không nhãn sự kiện",
+        "Other": "Sự kiện khác",
+    }
     x = np.arange(len(events)); width = .15
     for j, model in enumerate(keep):
-        axes[1].bar(x + (j-2)*width, [event[model][e] for e in events], width, label=model)
-    axes[1].set_xticks(x, events, rotation=25, ha="right")
+        axes[1].bar(x + (j-2)*width, [event[model][e] for e in events], width, label=model,
+                    color=str(.18 + .15*j), edgecolor="black", hatch=["", "//", "xx", "..", "\\\\"][j])
+    axes[1].set_xticks(x, [event_labels.get(e, e.replace("_", " ")) for e in events], rotation=25, ha="right")
     axes[1].set_ylabel("Tỷ trọng tổng deviance")
     axes[1].set_title("Đóng góp deviance theo nhóm sự kiện"); axes[1].grid(axis="y", alpha=.25)
     handles, labels = axes[0].get_legend_handles_labels()
@@ -192,8 +199,10 @@ def plot_xi_sensitivity(d: pd.DataFrame) -> None:
     out = {"xi": xis.tolist(), "deviance": values, "rank": ranks, "note": "Post-hoc decision sensitivity on the released 2021-2023 predictions."}
     (SUPP / "v19_xi_sensitivity.json").write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
     fig, ax = plt.subplots(figsize=(8.3, 4.7))
-    for label in ["EAGB", "Không địa lý", "EAGB-PG", "HCE thuần", "GLM", "CatBoost", "Rỗng"]:
-        ax.plot(xis, ranks[label], marker="o", label=label)
+    selected = ["EAGB", "Không địa lý", "EAGB-PG", "HCE thuần", "GLM", "CatBoost", "Rỗng"]
+    styles = ["-o", "--s", "-.^", ":D", "-x", "--v", "-.P"]
+    for label, style in zip(selected, styles):
+        ax.plot(xis, ranks[label], style, color="black", label=label)
     ax.axvline(1.5, color="black", linestyle="--", linewidth=1, label="ξ_eval = 1,5")
     ax.set_xlabel("ξ_eval"); ax.set_ylabel("Thứ hạng deviance (1 = thấp nhất)")
     ax.set_title("Độ nhạy thứ hạng theo ξ_eval (hậu kiểm)")

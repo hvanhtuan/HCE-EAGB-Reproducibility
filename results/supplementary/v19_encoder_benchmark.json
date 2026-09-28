@@ -1,9 +1,9 @@
 {
   "rows": 2453910,
   "hierarchical_blocks": 15,
-  "encoding_seconds": 8.325764500012156,
-  "peak_working_set_mb_after_encoding": 1570.72265625,
-  "peak_working_set_mb_before_encoding": 1570.72265625,
+  "encoding_seconds": 7.9084323000279255,
+  "peak_working_set_mb_after_encoding": 1567.875,
+  "peak_working_set_mb_before_encoding": 1567.875,
   "encoded_array_bytes": 58893840,
   "note": "Observed process-level benchmark on the manuscript build machine; not a cross-platform performance claim."
 }
