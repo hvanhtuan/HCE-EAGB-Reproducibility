@@ -1,0 +1,9 @@
+"metric","expected","observed","abs_diff","pass"
+"rows",6,6,0,TRUE
+"sum_exposure",12,12,0,TRUE
+"sum_loss",450,450,0,TRUE
+"sum_predicted_loss",405,405,0,TRUE
+"OE",1.11111111111111,1.11111111111111,0,TRUE
+"mean_prediction",33.75,33.75,0,TRUE
+"tweedie_dev_1_3",5.54529953747947,5.54529953747947,0,TRUE
+"tweedie_dev_1_5",4.97224007095222,4.97224007095222,0,TRUE

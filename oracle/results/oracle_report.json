@@ -1,0 +1,110 @@
+{
+  "status": "PASS",
+  "metric_oracle": {
+    "rows": "399128",
+    "models": "12",
+    "max_absolute_metric_difference": "2.7789326395577518e-11",
+    "all_metrics_within_1e-9": "TRUE"
+  },
+  "synthetic_oracle": {
+    "checks": 8,
+    "max_absolute_difference": 0.0,
+    "all_pass": true
+  },
+  "baseline_oracle": {
+    "glm_prediction_rmse": 2.00925964680015e-07,
+    "glm_prediction_max_abs": 2.29665474762442e-05,
+    "glm_prediction_max_relative": 3.10165626700752e-08,
+    "glm_prediction_correlation": 1.0,
+    "null_expected_rate": 1303.77298489833,
+    "null_locked_mean": 1303.77298489832,
+    "null_max_abs": 5.22959453519434e-12,
+    "glm_converged": 1.0,
+    "glm_iterations": 11.0
+  },
+  "baseline_metrics": [
+    {
+      "model": "GLM oracle R",
+      "deviance": 219.619670184408,
+      "OE": 0.274188039829031,
+      "mean_prediction": 1362.50291358348
+    },
+    {
+      "model": "GLM locked Python",
+      "deviance": 219.619670162825,
+      "OE": 0.274188039828888,
+      "mean_prediction": 1362.50291358419
+    },
+    {
+      "model": "Null oracle formula",
+      "deviance": 169.583930142049,
+      "OE": 0.28653915019257,
+      "mean_prediction": 1303.77298489833
+    },
+    {
+      "model": "Null locked Python",
+      "deviance": 169.583930142049,
+      "OE": 0.286539150192571,
+      "mean_prediction": 1303.77298489832
+    }
+  ],
+  "xi_eval_sensitivity": [
+    {
+      "power": 1.1,
+      "EAGB": 2460.53888202879,
+      "GLM": 2859.75447949707,
+      "Null": 2308.36017578482,
+      "HCE_direct": 2029.38838224922,
+      "EAGB_vs_GLM_pct": -13.959785720433176,
+      "Null_vs_GLM_pct": -19.28117632703982,
+      "HCE_direct_vs_GLM_pct": -29.036272281454103
+    },
+    {
+      "power": 1.3,
+      "EAGB": 710.676312094155,
+      "GLM": 720.605033888366,
+      "Null": 581.588876051152,
+      "HCE_direct": 492.453435247302,
+      "EAGB_vs_GLM_pct": -1.3778313122010666,
+      "Null_vs_GLM_pct": -19.29158849849916,
+      "HCE_direct_vs_GLM_pct": -31.66111641074222
+    },
+    {
+      "power": 1.5,
+      "EAGB": 256.213338946105,
+      "GLM": 219.619670162825,
+      "Null": 169.583930142049,
+      "HCE_direct": 142.068303827861,
+      "EAGB_vs_GLM_pct": 16.662291112699346,
+      "Null_vs_GLM_pct": -22.78290463858712,
+      "HCE_direct_vs_GLM_pct": -35.31166688187255
+    },
+    {
+      "power": 1.7,
+      "EAGB": 114.85807181923,
+      "GLM": 85.477143488298,
+      "Null": 61.2201337746604,
+      "HCE_direct": 52.8493570448461,
+      "EAGB_vs_GLM_pct": 34.372847678226776,
+      "Null_vs_GLM_pct": -28.37835791384212,
+      "HCE_direct_vs_GLM_pct": -38.17135799340172
+    },
+    {
+      "power": 1.9,
+      "EAGB": 74.1466302124843,
+      "GLM": 54.8793085956578,
+      "Null": 40.7390145236566,
+      "HCE_direct": 38.1972387174517,
+      "EAGB_vs_GLM_pct": 35.10853563915159,
+      "Null_vs_GLM_pct": -25.766166582353804,
+      "HCE_direct_vs_GLM_pct": -30.3977406149866
+    }
+  ],
+  "interpretation": {
+    "metric_path": "Independent R formulas reproduce the locked metrics from released cell-level predictions.",
+    "null_model": "The null prediction is checked against the exposure-weighted training loss rate.",
+    "glm_model": "A separate R Newton implementation refits the penalized Tweedie GLM from the released cell table.",
+    "scope": "This is an independent implementation oracle, not an independent external replication."
+  },
+  "python_platform": "Windows-11-10.0.26200-SP0"
+}

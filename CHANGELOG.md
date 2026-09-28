@@ -2,6 +2,8 @@
 
 ## Unreleased — post-full-replay audit synchronization
 
+- Added an independent R implementation oracle for the released cell-level metrics, null model, penalized Tweedie GLM, and Tweedie-power sensitivity.
+- Added a synthetic fixture with frozen expected results and machine-readable oracle comparisons.
 - Recomputed the H1b distance estimands and paired county-cluster bootstrap directly from the released cell-level predictions.
 - Preserved the superseded pre-full-replay H1b audit under `results/audit/history/`.
 - Added H1b provenance and point-estimand checks to release verification.

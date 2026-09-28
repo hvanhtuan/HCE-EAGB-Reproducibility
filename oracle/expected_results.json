@@ -1,0 +1,10 @@
+{
+  "rows": 6,
+  "sum_exposure": 12.0,
+  "sum_loss": 450.0,
+  "sum_predicted_loss": 405.0,
+  "OE": 1.1111111111111112,
+  "mean_prediction": 33.75,
+  "tweedie_dev_1_3": 5.545299537479466,
+  "tweedie_dev_1_5": 4.972240070952217
+}

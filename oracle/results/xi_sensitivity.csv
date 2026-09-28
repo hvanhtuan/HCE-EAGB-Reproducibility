@@ -1,0 +1,61 @@
+"power","model","tweedie_dev"
+1.1,"EAGB (HCE đồng thời)",2460.53888202879
+1.1,"GBDT + HCE tuần tự (GT2)",2637.81620313621
+1.1,"GBDT + mã hóa phẳng co ngót (H1c)",2925.31003367524
+1.1,"GBDT + mã hóa cấp quận (lùi về nút cha)",2520.50946705097
+1.1,"GBDT phân loại nội tại (bang/quận/tract)",3593.05572497564
+1.1,"GBDT không biến địa lý",2171.72351944591
+1.1,"EAGB-PG (Poisson–Gamma)",2217.23071968611
+1.1,"Tín nhiệm phân cấp thuần (HCE)",2029.38838224922
+1.1,"GLM Tweedie (đối chứng chính)",2859.75447949707
+1.1,"GLM Tweedie + spline (xấp xỉ GAM)",2897.41938540079
+1.1,"CatBoost OTS (có thứ tự thời gian)",2724.66491114429
+1.1,"Mô hình rỗng",2308.36017578482
+1.3,"EAGB (HCE đồng thời)",710.676312094155
+1.3,"GBDT + HCE tuần tự (GT2)",804.498557977648
+1.3,"GBDT + mã hóa phẳng co ngót (H1c)",847.702048009848
+1.3,"GBDT + mã hóa cấp quận (lùi về nút cha)",749.711671415523
+1.3,"GBDT phân loại nội tại (bang/quận/tract)",1435.31842484715
+1.3,"GBDT không biến địa lý",554.269793258944
+1.3,"EAGB-PG (Poisson–Gamma)",593.663851181173
+1.3,"Tín nhiệm phân cấp thuần (HCE)",492.453435247302
+1.3,"GLM Tweedie (đối chứng chính)",720.605033888366
+1.3,"GLM Tweedie + spline (xấp xỉ GAM)",737.769882278695
+1.3,"CatBoost OTS (có thứ tự thời gian)",846.303273567384
+1.3,"Mô hình rỗng",581.588876051152
+1.5,"EAGB (HCE đồng thời)",256.213338946105
+1.5,"GBDT + HCE tuần tự (GT2)",306.211212205496
+1.5,"GBDT + mã hóa phẳng co ngót (H1c)",324.872252729127
+1.5,"GBDT + mã hóa cấp quận (lùi về nút cha)",272.799090382307
+1.5,"GBDT phân loại nội tại (bang/quận/tract)",883.114867597219
+1.5,"GBDT không biến địa lý",175.549606307478
+1.5,"EAGB-PG (Poisson–Gamma)",193.157211475813
+1.5,"Tín nhiệm phân cấp thuần (HCE)",142.068303827861
+1.5,"GLM Tweedie (đối chứng chính)",219.619670162825
+1.5,"GLM Tweedie + spline (xấp xỉ GAM)",230.481931806821
+1.5,"CatBoost OTS (có thứ tự thời gian)",309.26284933955
+1.5,"Mô hình rỗng",169.583930142049
+1.7,"EAGB (HCE đồng thời)",114.85807181923
+1.7,"GBDT + HCE tuần tự (GT2)",144.061999258084
+1.7,"GBDT + mã hóa phẳng co ngót (H1c)",162.213606248043
+1.7,"GBDT + mã hóa cấp quận (lùi về nút cha)",120.066372729582
+1.7,"GBDT phân loại nội tại (bang/quận/tract)",859.739261453222
+1.7,"GBDT không biến địa lý",72.5224135297149
+1.7,"EAGB-PG (Poisson–Gamma)",77.2602197841751
+1.7,"Tín nhiệm phân cấp thuần (HCE)",52.8493570448461
+1.7,"GLM Tweedie (đối chứng chính)",85.477143488298
+1.7,"GLM Tweedie + spline (xấp xỉ GAM)",93.9363221281699
+1.7,"CatBoost OTS (có thứ tự thời gian)",130.169145765778
+1.7,"Mô hình rỗng",61.2201337746604
+1.9,"EAGB (HCE đồng thời)",74.1466302124843
+1.9,"GBDT + HCE tuần tự (GT2)",93.5263992565509
+1.9,"GBDT + mã hóa phẳng co ngót (H1c)",113.938838710618
+1.9,"GBDT + mã hóa cấp quận (lùi về nút cha)",74.0732929123503
+1.9,"GBDT phân loại nội tại (bang/quận/tract)",1416.01541312415
+1.9,"GBDT không biến địa lý",50.7149331473313
+1.9,"EAGB-PG (Poisson–Gamma)",49.618845644431
+1.9,"Tín nhiệm phân cấp thuần (HCE)",38.1972387174517
+1.9,"GLM Tweedie (đối chứng chính)",54.8793085956578
+1.9,"GLM Tweedie + spline (xấp xỉ GAM)",62.4573460110102
+1.9,"CatBoost OTS (có thứ tự thời gian)",73.9128957197032
+1.9,"Mô hình rỗng",40.7390145236566

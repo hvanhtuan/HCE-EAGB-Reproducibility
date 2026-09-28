@@ -29,6 +29,7 @@ results/supplementary/   Supplementary analyses
 results/audit/           Reviewer-driven matching/equation audit
 artifacts/predictions/   Cell-level predictions produced by a full replay
 artifacts/model_selection/ Machine-readable selection log
+oracle/                  Independent R metric and baseline oracle
 figures/                 Figure scripts, source data, and generated figures
 scripts/                 Cross-platform orchestration and release checks
 ```
@@ -73,6 +74,26 @@ python code/postreview_analysis.py
 ```
 
 On Windows, execute these commands from PowerShell. The orchestrator changes into the required working directories automatically.
+
+## Independent implementation oracle
+
+The `oracle/` package independently recomputes the locked metrics from all 399,128 released test-cell predictions and refits the main penalized Tweedie GLM with a separate Newton solver in R. It does not import the Python metric or model-fitting modules used by the study pipeline.
+
+The metric oracle reproduces all reported metrics for 12 models with a maximum absolute difference of `2.78e-11`. The independently fitted GLM has prediction correlation `1.0` with the locked Python fit and maximum relative prediction difference `3.10e-8`. The null prediction matches the exposure-weighted training loss rate within `5.23e-12`. The machine-readable report is `oracle/results/oracle_report.json`.
+
+Run the oracle with Docker:
+
+```powershell
+pwsh oracle/run_oracle.ps1
+```
+
+or on a POSIX shell:
+
+```bash
+bash oracle/run_oracle.sh
+```
+
+This is an independent implementation oracle on the same released snapshot, not an external independent replication.
 
 ## Cell-level predictions
 

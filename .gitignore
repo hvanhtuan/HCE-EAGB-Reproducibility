@@ -17,6 +17,7 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 Thumbs.db
+oracle/work/
 
 # Keep directory placeholders
 !artifacts/predictions/README.md

@@ -45,6 +45,9 @@ def main() -> None:
         "configs/postreview_exploratory.json",
         "scripts/run_all.py", "scripts/export_cell_predictions.py",
         "scripts/recompute_h1b.py",
+        "oracle/README.md", "oracle/Dockerfile", "oracle/oracle_metrics.R",
+        "oracle/oracle_glm.R", "oracle/oracle_synthetic.R",
+        "oracle/results/oracle_report.json",
         "figures/build_all.py", "SHA256SUMS.txt",
     ]
     for relative in required:
@@ -147,6 +150,21 @@ def main() -> None:
     else:
         check(False, "H1b audit result present")
 
+    oracle_path = ROOT / "oracle" / "results" / "oracle_report.json"
+    if oracle_path.exists():
+        oracle = json.loads(oracle_path.read_text(encoding="utf-8"))
+        check(oracle.get("status") == "PASS", "independent implementation oracle passed")
+        metric_oracle = oracle.get("metric_oracle", {})
+        check(int(metric_oracle.get("rows", 0)) == 399128, "oracle uses all test-cell predictions")
+        check(int(metric_oracle.get("models", 0)) == 12, "oracle checks all 12 released models")
+        check(float(metric_oracle.get("max_absolute_metric_difference", 1)) < 1e-9, "oracle metrics match within 1e-9")
+        baseline_oracle = oracle.get("baseline_oracle", {})
+        check(float(baseline_oracle.get("glm_prediction_max_relative", 1)) < 1e-6, "independent R GLM matches locked predictions")
+        check(float(baseline_oracle.get("null_max_abs", 1)) < 1e-9, "null model matches the closed-form rate")
+        check(oracle.get("synthetic_oracle", {}).get("all_pass") is True, "synthetic oracle fixture passed")
+    else:
+        check(False, "independent implementation oracle result present")
+
     checksum_path = ROOT / "SHA256SUMS.txt"
     checked = 0
     if checksum_path.exists():
@@ -164,7 +182,13 @@ def main() -> None:
             checked += 1
         check(checked > 0, f"verified {checked} release checksums")
 
-    oversized = [path for path in ROOT.rglob("*") if path.is_file() and path.stat().st_size > 95 * 1024 * 1024]
+    ignored_large_parts = {".git", "raw", "work"}
+    oversized = [
+        path for path in ROOT.rglob("*")
+        if path.is_file()
+        and not any(part in ignored_large_parts for part in path.relative_to(ROOT).parts)
+        and path.stat().st_size > 95 * 1024 * 1024
+    ]
     check(not oversized, "no tracked-style file exceeds GitHub's 100 MB limit")
 
     print("\n" + ("Release verification PASSED." if not ERRORS else "Release verification FAILED."))

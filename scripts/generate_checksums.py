@@ -6,7 +6,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "SHA256SUMS.txt"
-EXCLUDED_PARTS = {".git", ".venv", "__pycache__", "raw"}
+EXCLUDED_PARTS = {".git", ".venv", "__pycache__", "raw", "work"}
 EXCLUDED_SUFFIXES = {".pyc", ".pyo", ".parquet", ".npz", ".pkl", ".log"}
 
 

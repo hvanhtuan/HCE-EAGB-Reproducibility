@@ -1,0 +1,10 @@
+"check","value"
+"glm_prediction_rmse",2.00925964680015e-07
+"glm_prediction_max_abs",2.29665474762442e-05
+"glm_prediction_max_relative",3.10165626700752e-08
+"glm_prediction_correlation",1
+"null_expected_rate",1303.77298489833
+"null_locked_mean",1303.77298489832
+"null_max_abs",5.22959453519434e-12
+"glm_converged",1
+"glm_iterations",11
