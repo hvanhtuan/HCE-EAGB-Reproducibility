@@ -2,6 +2,9 @@
 
 ## Unreleased — post-full-replay audit synchronization
 
+- Replaced the single encoder timing with three fresh-process repetitions, machine metadata, incremental working-set measurements, and a cached-tree 2024 refresh benchmark.
+- Added a dated targeted literature-search audit with exact query families and explicit inclusion/exclusion rules; it is not represented as a systematic review.
+- Added an explicitly unexecuted prospective multi-event confirmation protocol covering historical snapshots, equal-budget nested tuning, five seeds, and event-level uncertainty.
 - Added five-seed convergence-controlled refits for the five selected geography representations, with a shared 12,000-round cap and stopping rule.
 - Added machine-readable per-seed results, rank summaries, encoder resource measurements, and deviance/decision-sensitivity figures.
 - Recorded explicitly that the multi-seed run is post-hoc, reuses selected configurations, and does not replace independent-event evaluation.

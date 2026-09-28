@@ -1,0 +1,21 @@
+{
+  "status": "prospective design; not executed and not evidence in the present manuscript",
+  "registration": "externally timestamp before outcome access",
+  "events": {
+    "minimum_independent_event_windows": 3,
+    "requirement": "distinct catastrophe events or rolling-origin windows not used in method development",
+    "label_availability": "use archived historical snapshots and record actual claim maturity; do not infer availability from the current snapshot"
+  },
+  "comparison": {
+    "models": ["HCE simultaneous", "HCE sequential", "flat target encoding", "no-geography GBDT", "native-categorical geography", "actuarial GLM/GAM"],
+    "tuning": "nested blocked tuning within each training origin",
+    "budget": "same candidate count, maximum boosting rounds, stopping rule, and five seeds for all stochastic learners",
+    "baseline": "predeclare spline basis, interactions, regularization grid, exposure offset, calibration, and convergence checks"
+  },
+  "analysis": {
+    "primary_metric": "exposure-weighted Tweedie deviance with power fixed before outcome access",
+    "uncertainty": "event-level estimates plus hierarchical or event-block resampling that includes retraining",
+    "multiplicity": "one primary contrast; all other contrasts labelled secondary",
+    "decision_rule": "predeclare effect threshold and interval rule rather than a point-score rule"
+  }
+}

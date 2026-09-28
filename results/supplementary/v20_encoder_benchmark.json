@@ -1,0 +1,74 @@
+{
+  "scope": "observed implementation benchmark; not a portable or asymptotic performance claim",
+  "repetitions": 3,
+  "fresh_process_per_repetition": true,
+  "rows": 2453910,
+  "hierarchical_blocks": 15,
+  "machine": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "processor": "AMD64 Family 25 Model 117 Stepping 2, AuthenticAMD",
+    "logical_cpu_count": 16,
+    "python": "3.12.14",
+    "numpy": "2.3.5"
+  },
+  "summary": {
+    "full_rebuild_seconds_median": 7.90899939998053,
+    "full_rebuild_seconds_q1": 7.898778700007824,
+    "full_rebuild_seconds_q3": 7.91697039999417,
+    "refresh_2024_seconds_median": 0.08836500003235415,
+    "refresh_2024_seconds_q1": 0.0874279500276316,
+    "refresh_2024_seconds_q3": 0.08847070002229884,
+    "incremental_working_set_mib_median": 74.40625,
+    "encoded_array_mib": 56.16554260253906,
+    "refresh_array_mib": 2.71875
+  },
+  "runs": [
+    {
+      "run": 1,
+      "rows": 2453910,
+      "full_rebuild_seconds": 7.888558000035118,
+      "refresh_2024_seconds": 0.08649090002290905,
+      "working_set_before_mib": 724.83984375,
+      "working_set_after_full_mib": 799.5078125,
+      "working_set_after_refresh_mib": 802.04296875,
+      "peak_before_mib": 1502.60546875,
+      "peak_after_full_mib": 1502.60546875,
+      "peak_after_refresh_mib": 1502.60546875,
+      "encoded_array_mib": 56.16554260253906,
+      "refresh_array_mib": 2.71875
+    },
+    {
+      "run": 2,
+      "rows": 2453910,
+      "full_rebuild_seconds": 7.92494140000781,
+      "refresh_2024_seconds": 0.08857640001224354,
+      "working_set_before_mib": 728.578125,
+      "working_set_after_full_mib": 802.984375,
+      "working_set_after_refresh_mib": 805.5,
+      "peak_before_mib": 1530.796875,
+      "peak_after_full_mib": 1530.796875,
+      "peak_after_refresh_mib": 1530.796875,
+      "encoded_array_mib": 56.16554260253906,
+      "refresh_array_mib": 2.71875
+    },
+    {
+      "run": 3,
+      "rows": 2453910,
+      "full_rebuild_seconds": 7.90899939998053,
+      "refresh_2024_seconds": 0.08836500003235415,
+      "working_set_before_mib": 729.28125,
+      "working_set_after_full_mib": 802.375,
+      "working_set_after_refresh_mib": 806.67578125,
+      "peak_before_mib": 1548.5703125,
+      "peak_after_full_mib": 1548.5703125,
+      "peak_after_refresh_mib": 1548.5703125,
+      "encoded_array_mib": 56.16554260253906,
+      "refresh_array_mib": 2.71875
+    }
+  ],
+  "definitions": {
+    "MiB": "2^20 bytes",
+    "working_set": "physical memory resident in the benchmark process at the observation point",
+    "refresh_2024": "statistics, solve, and assignment for the three encoders with cached trees; excludes data loading and tree construction"
+  }
+}

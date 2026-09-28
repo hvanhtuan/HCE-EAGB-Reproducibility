@@ -19,6 +19,8 @@ An additional REVIEWEDv8 analysis was recorded and run on 2026-09-27. It applies
 
 A further post-hoc stability run recorded on 2026-09-28 refits the five already-selected Table 14a configurations over five fixed algorithmic seeds under one 12,000-round cap and one early-stopping rule. It publishes every run, rank distributions, an encoder time/memory benchmark, annual/event deviance plots, and `xi_eval` decision sensitivity. This is a convergence-controlled refit of selected configurations, not a repeated full-grid search, independent-event replication, or new confirmatory holdout.
 
+The practical encoder benchmark was subsequently repeated three times in fresh Windows processes. It reports the median and interquartile range for a full 15-block rebuild, a cached-tree 2024 refresh, and the incremental working set; these observations are machine-specific and are not portable performance claims. The repository also records a targeted literature-search audit and an unexecuted prospective multi-event confirmation protocol so that proposals are not confused with completed evidence.
+
 ## Repository layout
 
 ```text
@@ -74,6 +76,7 @@ python figures/build_all.py
 python code/numerical_stability.py
 python code/postreview_analysis.py
 python code/v19_multiseed_and_figures.py
+python code/v20_encoder_benchmark.py --repetitions 3
 ```
 
 On Windows, execute these commands from PowerShell. The orchestrator changes into the required working directories automatically.

@@ -1,0 +1,24 @@
+{
+  "search_date": "2026-09-28",
+  "scope": "targeted scoping search, not a systematic review or PRISMA review",
+  "routes": ["publisher and DOI landing pages", "arXiv", "PMLR", "scholarly web indexing"],
+  "queries": [
+    "hierarchical target encoding categorical variables empirical Bayes paper",
+    "structured target encoding hierarchy categorical variables paper",
+    "conjugate Bayesian encoding categorical variables target encoding paper",
+    "categorical feature hierarchy encoding supervised learning paper"
+  ],
+  "include": [
+    "primary methodological source",
+    "supervised categorical encoding using target information",
+    "hierarchical, structured, empirical-Bayes, leakage-control, or directly comparable implementation detail"
+  ],
+  "exclude": [
+    "label-hierarchy methods without categorical feature encoding",
+    "unsupervised semantic embeddings",
+    "target-variable encoding unrelated to categorical predictors",
+    "duplicates, secondary summaries, and pages without a primary source"
+  ],
+  "use_in_manuscript": "Directly comparable sources support Table 2; adjacent methods are described as context rather than claimed as exact predecessors.",
+  "limitation": "The search is reproducible in wording and date but is not exhaustive and does not support a systematic-review claim."
+}
